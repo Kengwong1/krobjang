@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ตรวจหวย - ครบจังดอทคอม</title>
+
+    <meta name="description" content="ตรวจหวยออนไลน์ ตรวจผลหวยทุกประเภท ผลหวยวันนี้ ผลหวยย้อนหลัง ข่าวหวย เลขเด็ด ทำนายฝัน" />
+    <meta name="keywords" content="ตรวจหวย, ผลหวย, หวยไทย, หวยหุ้น, หวยวันนี้, ตรวจหวยออนไลน์, เลขเด็ด, ทำนายฝัน" />
+    <meta name="author" content="ครบจังดอทคอม" />
+
+    <meta property="og:title" content="ตรวจหวย - ครบจังดอทคอม" />
+    <meta property="og:description" content="ตรวจหวยออนไลน์ ตรวจผลหวยทุกประเภท ผลหวยวันนี้ ผลหวยย้อนหลัง ข่าวหวย เลขเด็ด ทำนายฝัน" />
+    <meta property="og:image" content="https://www.krubjang.com/logo.png" />
+    <meta property="og:url" content="https://www.krubjang.com/lotto.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="th_TH" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ตรวจหวย - ครบจังดอทคอม" />
+    <meta name="twitter:description" content="ตรวจหวยออนไลน์ ตรวจผลหวยทุกประเภท ผลหวยวันนี้ ผลหวยย้อนหลัง ข่าวหวย เลขเด็ด ทำนายฝัน" />
+    <meta name="twitter:image" content="https://www.krubjang.com/logo.png" />
+    <meta name="twitter:site" content="@krubjangdotcom" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&family=Noto+Sans+Thai:wght@400;700&display=swap" rel="stylesheet" />
+
+    <style>
+        /* CSS ปรับปรุงใหม่ */
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Noto Sans Thai', 'Kanit', sans-serif;
+        }
+        body {
+            background-color: #f0f2f5; /* สีพื้นหลังอ่อน ๆ */
+            color: #333;
+            line-height: 1.6;
+        }
+        .header-container {
+            background-color: #004d99; /* สีน้ำเงินเข้มตามรูป */
+            color: #fff;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .header-container h1 {
+            font-size: 2.8em;
+            margin-bottom: 8px;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .header-container p {
+            font-size: 1.2em;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        .main-nav {
+            background: #fff;
+            padding: 12px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            margin: 20px 20px 15px;
+            z-index: 2;
+        }
+        .main-nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            padding: 12px 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #004d99; /* สีน้ำเงินเข้ม */
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .main-nav a:hover,
+        .main-nav a.active {
+            background: #004d99; /* สีน้ำเงินเข้ม */
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 77, 153, 0.4);
+            border-color: #004d99;
+        }
+        .main-nav a:hover::after,
+        .main-nav a.active::after {
+            transform: scaleX(1);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px 40px;
+        }
+        .section, .hero-section {
+            background: #fff; /* ใช้พื้นหลังสีขาวเพื่อให้ดูสะอาด */
+            padding: 25px 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            margin-bottom: 35px;
+        }
+        .section h2 {
+            margin-bottom: 25px;
+            color: #004d99; /* สีน้ำเงินเข้ม */
+            font-size: 1.9em;
+            padding-bottom: 12px;
+            display: inline-block;
+            font-weight: 700;
+            position: relative;
+        }
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #004d99; /* สีน้ำเงินเข้ม */
+            border-radius: 2px;
+        }
+        .footer {
+            background-color: #444; /* สีเทาเข้มตามรูป */
+            color: #fff;
+            text-align: center;
+            padding: 25px 15px;
+            font-size: 0.9em;
+            letter-spacing: 0.05em;
+            border-top: 4px solid #004d99; /* สีน้ำเงินเข้ม */
+        }
+        .footer a {
+            color: #f9f9f9;
+            text-decoration: underline;
+        }
+        .footer a:hover {
+            color: #004d99; /* สีน้ำเงินเข้ม */
+        }
+        
+        /* ปรับปรุงสีของปุ่มและอินพุต */
+        .lotto-form {
+            background: #f0f2f5; /* สีพื้นหลังอ่อน */
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+        .lotto-form input, .lotto-form select {
+            border: 2px solid #004d99;
+        }
+        .lotto-form button, .cta-button, .dream-btn {
+            background: #004d99; /* ใช้สีน้ำเงินเข้มสำหรับปุ่มหลัก */
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 77, 153, 0.4);
+            width: 100%;
+        }
+        .lotto-form button:hover, .cta-button:hover, .dream-btn:hover {
+            background: #005fbd; /* สีน้ำเงินที่เข้มขึ้นเล็กน้อยเมื่อโฮเวอร์ */
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 77, 153, 0.6);
+        }
+
+        /* ปรับปรุงสีของส่วนผลลัพธ์ */
+        .result-section {
+            background: #e6f0ff; /* สีน้ำเงินอ่อน */
+        }
+        .winning-number {
+            color: #004d99; /* สีน้ำเงินเข้ม */
+        }
+        .prize {
+            background: #d9e6f2; /* สีเทาอมฟ้าอ่อน ๆ */
+            border-left: 5px solid #004d99;
+        }
+        .prize h4 {
+            color: #004d99;
+        }
+        .rss-title a, .lucky-number {
+            color: #004d99;
+        }
+        .lucky-item {
+            border-left: 4px solid #004d99;
+        }
+        .history-date {
+            color: #004d99;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .main-nav { gap: 8px; padding: 10px 15px; }
+            .main-nav a { padding: 10px 15px; font-size: 0.9em; }
+            .section h2 { font-size: 1.7em; margin-bottom: 18px; }
+            .header-container h1 { font-size: 2.2em; }
+            .hero-section h1 { font-size: 2em; }
+        }
+        @media screen and (max-width: 480px) {
+            .main-nav { justify-content: space-around; }
+            .container { margin: 20px 10px; padding-bottom: 20px; }
+            .header-container h1 { font-size: 1.8em; }
+            .header-container p { font-size: 1em; }
+            .section { padding: 20px 15px; }
+            .hero-section { padding: 25px 15px; }
+            .hero-section h1 { font-size: 1.6em; }
+            .hero-section p { font-size: 1em; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header-container">
+        <h1>ครบจังดอทคอม</h1>
+        <p>ตรวจหวย ดูดวง ข่าวสาร บันเทิง กีฬา เทคโนโลยี ไลฟ์สไตล์ ครบจบในเว็บเดียว</p>
+    </header>
+    <nav class="main-nav">
+        <a href="index.html" data-page="index">หน้าแรก</a>
+        <a href="news.html" data-page="news">ข่าว</a>
+        <a href="lotto.html" data-page="lotto" class="active">ตรวจหวย</a>
+        <a href="horoscope.html" data-page="horoscope">ดูดวง</a>
+        <a href="sport.html" data-page="sport">กีฬา</a>
+        <a href="video.html" data-page="video">วีดีโอ</a>
+        <a href="games.html" data-page="games">เกมส์</a>
+        <a href="marketplace.html" data-page="marketplace">ซื้อ-ขาย</a>
+        <a href="booking.html" data-page="booking">จองออนไลน์</a>
+        <a href="ai.html" data-page="ai">AI</a>
+        <a href="contact.html" data-page="contact">ติดต่อเรา</a>
+    </nav>
+    
+    <div class="container">
+        <div class="hero-section">
+            <h1>ตรวจหวยออนไลน์</h1>
+            <p>ตรวจผลหวยทุกประเภท ผลหวยวันนี้ ผลหวยย้อนหลัง</p>
+        </div>
+        
+        <div class="section">
+            <h2>🔍 ตรวจหวย</h2>
+            <div class="lotto-form">
+                <input type="text" id="lotto-input" placeholder="กรอกเลขหวยที่ต้องการตรวจ (เช่น 123456)">
+                <select id="lotto-type">
+                    <option value="thai">หวยไทย</option>
+                    <option value="stock">หวยหุ้น</option>
+                    <option value="laos">หวยลาว</option>
+                    <option value="uk">หวยอังกฤษ</option>
+                </select>
+                <button onclick="checkLotto()">ตรวจหวย</button>
+            </div>
+            
+            <div class="result-section" id="result-section">
+                <div class="lotto-result">
+                    <h3>ผลการตรวจหวย</h3>
+                    <p>เลขที่ตรวจ: <span id="result-number">-</span></p>
+                    <p>ประเภทหวย: <span id="result-type">-</span></p>
+                    <p>วันที่ตรวจ: <span id="result-date">-</span></p>
+                    <div class="winning-number" id="winning-number">-</div>
+                    <div class="prize">
+                        <h4>รางวัลที่ได้</h4>
+                        <p id="prize-result">-</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📰 ข่าวหวยล่าสุด</h2>
+            <div class="rss-feed" id="rss-feed">
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <p>กำลังโหลดข่าวหวย...</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section dream-section">
+            <h2>💭 ทำนายฝัน</h2>
+            <input type="text" class="dream-input" id="dream-text" placeholder="กรอกความฝันของคุณ">
+            <button class="dream-btn" onclick="predictDream()">ทำนายฝัน</button>
+            <div class="dream-result" id="dream-result">
+                <h3>ผลการทำนายฝัน</h3>
+                <p>ความฝันของคุณ: <span id="dream-content"></span></p>
+                <p>เลขที่ควรเลือก: <span id="dream-number"></span></p>
+                <p>คำอธิบาย: <span id="dream-explanation"></span></p>
+            </div>
+        </div>
+        
+        <div class="section lucky-section">
+            <h2>🍀 เลขเด็ดจากที่ต่างๆ</h2>
+            <div id="lucky-numbers">
+                <div class="lucky-item">
+                    <div class="lucky-number">เลขเด็ดจากเว็บไซต์ A: 123456</div>
+                    <div class="lucky-source">แหล่งที่มา: เว็บไซต์ A</div>
+                </div>
+                <div class="lucky-item">
+                    <div class="lucky-number">เลขเด็ดจากเว็บไซต์ B: 654321</div>
+                    <div class="lucky-source">แหล่งที่มา: เว็บไซต์ B</div>
+                </div>
+                <div class="lucky-item">
+                    <div class="lucky-number">เลขเด็ดจากเว็บไซต์ C: 112233</div>
+                    <div class="lucky-source">แหล่งที่มา: เว็บไซต์ C</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section history-section">
+            <h2>📋 ประวัติการตรวจหวย</h2>
+            <div id="history-list">
+                <div class="history-item">
+                    <div class="history-date">10 มีนาคม 2567</div>
+                    <div class="history-numbers">123456</div>
+                </div>
+                <div class="history-item">
+                    <div class="history-date">09 มีนาคม 2567</div>
+                    <div class="history-numbers">654321</div>
+                </div>
+                <div class="history-item">
+                    <div class="history-date">08 มีนาคม 2567</div>
+                    <div class="history-numbers">111111</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <p>© 2025 ครบจังดอทคอม | <a href="#" style="color:white; text-decoration: underline;">นโยบายความเป็นส่วนตัว</a></p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const navLinks = document.querySelectorAll('.main-nav a');
+            navLinks.forEach(link => {
+                if(link.getAttribute('data-page') === 'lotto') {
+                    link.classList.add('active');
+                }
+            });
+            
+            loadRSSFeed();
+        });
+        
+        function checkLotto() {
+            const number = document.getElementById('lotto-input').value.trim();
+            const type = document.getElementById('lotto-type').value;
+            const resultSection = document.getElementById('result-section');
+            
+            if(!number) {
+                alert('กรุณากรอกเลขหวย');
+                return;
+            }
+            
+            document.getElementById('result-number').textContent = number;
+            document.getElementById('result-type').textContent = 
+                type === 'thai' ? 'หวยไทย' : 
+                type === 'stock' ? 'หวยหุ้น' : 
+                type === 'laos' ? 'หวยลาว' : 'หวยอังกฤษ';
+            document.getElementById('result-date').textContent = new Date().toLocaleDateString('th-TH', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            const winNumber = Math.floor(Math.random() * 900000) + 100000;
+            document.getElementById('winning-number').textContent = winNumber;
+            
+            let prize = 'ไม่ถูกรางวัล';
+            let prizeColor = '#ff6b6b';
+            
+            if(number === winNumber.toString()) {
+                prize = 'ถูกรางวัลที่ 1 จำนวน 100,000 บาท';
+                prizeColor = '#4caf50';
+            } else if(number.slice(-3) === winNumber.toString().slice(-3)) {
+                prize = 'ถูกรางวัลที่ 3 จำนวน 5,000 บาท';
+                prizeColor = '#4caf50';
+            } else if(number.slice(-2) === winNumber.toString().slice(-2)) {
+                prize = 'ถูกรางวัลที่ 4 จำนวน 1,000 บาท';
+                prizeColor = '#4caf50';
+            }
+            
+            document.getElementById('prize-result').textContent = prize;
+            document.getElementById('winning-number').style.color = prizeColor;
+            
+            resultSection.classList.add('show');
+        }
+        
+        function predictDream() {
+            const dreamText = document.getElementById('dream-text').value.trim();
+            const resultDiv = document.getElementById('dream-result');
+            
+            if(!dreamText) {
+                alert('กรุณากรอกความฝัน');
+                return;
+            }
+            
+            document.getElementById('dream-content').textContent = dreamText;
+            document.getElementById('dream-number').textContent = '123456';
+            document.getElementById('dream-explanation').textContent = 'ความฝันนี้สื่อถึงความโชคดีในชีวิต';
+            
+            resultDiv.classList.add('show');
+        }
+        
+        function loadRSSFeed() {
+            const rssFeed = document.getElementById('rss-feed');
+            
+            const proxyUrl = 'https://api.allorigins.win/raw?url=';
+            const rssUrls = [
+                'https://www.thairath.co.th/feed/lotto',
+                'https://www.sanook.com/news/rss/lotto/',
+                'https://www.khaosod.co.th/rss/lotto.xml'
+            ];
+            
+            rssFeed.innerHTML = `
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <p>กำลังโหลดข่าวหวย...</p>
+                </div>
+            `;
+            
+            Promise.all(rssUrls.map(url => 
+                fetch(proxyUrl + encodeURIComponent(url))
+                    .then(response => response.text())
+                    .catch(error => {
+                        console.error('Error fetching RSS:', error);
+                        return '';
+                    })
+            ))
+            .then(responses => {
+                let combinedHtml = '<h3>ข่าวหวยล่าสุด</h3>';
+                let newsCount = 0;
+                
+                responses.forEach((response, index) => {
+                    if(response) {
+                        try {
+                            const parser = new DOMParser();
+                            const xmlDoc = parser.parseFromString(response, "text/xml");
+                            const items = xmlDoc.getElementsByTagName('item');
+                            
+                            for(let i = 0; i < Math.min(2, items.length); i++) {
+                                if(newsCount >= 6) break;
+                                
+                                const title = items[i].getElementsByTagName('title')[0]?.textContent || 'ไม่มีชื่อ';
+                                const pubDate = items[i].getElementsByTagName('pubDate')[0]?.textContent || 'ไม่มีวันที่';
+                                const link = items[i].getElementsByTagName('link')[0]?.textContent || '#';
+                                
+                                const formattedDate = formatDate(pubDate);
+                                
+                                combinedHtml += `
+                                    <div class="rss-item">
+                                        <div class="rss-title"><a href="${link}" target="_blank">${title}</a></div>
+                                        <div class="rss-date">${formattedDate}</div>
+                                    </div>
+                                `;
+                                newsCount++;
+                            }
+                        } catch(e) {
+                            console.error('Error parsing RSS:', e);
+                        }
+                    }
+                });
+                
+                if(newsCount > 0) {
+                    rssFeed.innerHTML = combinedHtml;
+                } else {
+                    rssFeed.innerHTML = '<p style="text-align:center;">ไม่สามารถโหลดข่าวได้ในขณะนี้</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Error loading RSS feeds:', error);
+                rssFeed.innerHTML = '<p style="color:red; text-align:center;">ไม่สามารถโหลดข่าวได้ โปรดลองใหม่ภายหลัง</p>';
+            });
+        }
+        
+        function formatDate(dateString) {
+            if(!dateString) return 'ไม่มีวันที่';
+            
+            try {
+                const date = new Date(dateString);
+                return date.toLocaleDateString('th-TH', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            } catch(e) {
+                return dateString;
+            }
+        }
+    </script>
+</body>
+</html>
