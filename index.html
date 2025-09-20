@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ครบจังดอทคอม — หน้าแรก</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#0d47a1;
+    --accent:#1565c0;
+    --bg:#f4f6f9;
+    --card:#fff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:"Sarabun",system-ui,Arial;
+    background:var(--bg);
+    color:#222;
+  }
+
+  /* Header - keep theme old style */
+  header{
+    background:var(--brand);
+    color:#fff;
+    padding:28px 16px;
+    text-align:center;
+  }
+  header h1{margin:0;font-size:28px;letter-spacing:0.5px}
+  header p{margin:6px 0 0;opacity:0.9}
+
+  /* nav (same as before) */
+  nav{
+    background:#fff;
+    padding:12px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.08);
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  nav a{
+    color:#333;text-decoration:none;padding:8px 14px;border-radius:8px;font-weight:600;
+  }
+  nav a.active, nav a:hover{
+    background:var(--accent); color:#fff;
+  }
+
+  /* main layout */
+  main{max-width:1150px;margin:28px auto;padding:0 16px}
+  .intro{
+    background:var(--card); padding:28px;border-radius:12px;box-shadow:0 6px 16px rgba(13,71,161,0.06);text-align:center;margin-bottom:18px;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns: 1fr 360px;
+    gap:20px;
+    align-items:start;
+  }
+
+  /* left column */
+  .left-column{display:flex;flex-direction:column;gap:18px}
+  .section{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.06)}
+  .section h2{margin:0 0 12px;color:var(--brand);font-size:18px}
+  .card{background:#fff;border-radius:10px;padding:12px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
+  .card h3{margin:0 0 8px;font-size:15px;color:var(--accent)}
+  .meta{font-size:13px;color:#666;margin-top:6px}
+
+  /* right column (sidebar) */
+  .sidebar{display:flex;flex-direction:column;gap:14px}
+  .small{font-size:14px;color:#444}
+
+  /* buttons */
+  .btn{display:inline-block;padding:8px 12px;background:var(--accent);color:#fff;text-decoration:none;border-radius:8px}
+  .muted{background:#f1f4f8;color:#333;border-radius:8px;padding:8px 10px;display:inline-block}
+
+  /* video list */
+  .video-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .video-thumb{background:#000;height:90px;border-radius:8px;overflow:hidden;position:relative}
+  .video-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+
+  /* responsive */
+  @media (max-width:980px){
+    .grid{grid-template-columns:1fr}
+    .video-grid{grid-template-columns:1fr 1fr}
+  }
+
+  footer{background:var(--brand);color:#fff;padding:12px;text-align:center;margin-top:28px;border-radius:6px}
+  .small-muted{font-size:12px;color:#999}
+  .last-updated{font-size:13px;color:#555}
+</style>
+</head>
+<body>
+
+  <!-- HEADER & NAV (ธีมเดิม) -->
+  <header>
+    <h1>ครบจังดอทคอม</h1>
+    <p>ศูนย์รวมข่าวสารและบันเทิงครบวงจร</p>
+  </header>
+
+ <nav class="main-nav">
+        <a href="index.html" class="active">หน้าแรก</a>
+        <a href="news.html">ข่าว</a>
+        <a href="lotto.html">ตรวจหวย</a>
+        <a href="horoscope.html">ดูดวง</a>
+        <a href="sport.html">กีฬา</a>
+        <a href="video.html">วีดีโอ</a>
+        <a href="games.html">เกมส์</a>
+        <a href="marketplace.html">ซื้อ-ขาย</a>
+        <a href="contact.html">ติดต่อเรา</a>
+    </nav>
+
+  <main>
+    <div class="intro">
+      <h2>ยินดีต้อนรับสู่ ครบจังดอทคอม</h2>
+      <p class="small-muted">หน้าแรกอัปเดตอัตโนมัติจากแหล่งข่าวและคอนเทนต์ยอดนิยม ทุกครั้งที่มีการเปิดหน้าเว็บ</p>
+      <div style="margin-top:10px" id="lastUpdated">อัพเดตล่าสุด: <span class="last-updated">-</span></div>
+    </div>
+
+    <div class="grid">
+      <!-- LEFT: Main feeds and widgets -->
+      <div class="left-column">
+
+        <!-- 1) Headline slider (เรียงข่าวเด่นจาก RSS) -->
+        <div class="section" id="headlineSection">
+          <h2>📰 ข่าวเด่น</h2>
+          <div id="headlines">กำลังโหลดข่าวเด่น...</div>
+        </div>
+
+        <!-- 2) Latest articles area (จากหลาย RSS) -->
+        <div class="section" id="newsSection">
+          <h2>🔥 เนื้อหายอดนิยม</h2>
+          <div id="newsList">กำลังโหลดบทความ...</div>
+        </div>
+
+        <!-- 3) YouTube trending / latest -->
+        <div class="section" id="videoSection">
+          <h2>🎬 วิดีโอแนะนำ</h2>
+          <div id="videoList">กำลังโหลดวิดีโอ...</div>
+        </div>
+
+        <!-- 4) Horoscope daily -->
+        <div class="section" id="horoscopeSection">
+          <h2>🔮 ดวงประจำวัน</h2>
+          <div id="horoscopeGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px"></div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: Sidebar: Ads / Affiliate / Donate -->
+      <aside class="sidebar">
+        <div class="section">
+          <h2>💰 สนับสนุนเว็บไซต์</h2>
+          <div class="card">
+            <h3>โฆษณาจาก Google AdSense</h3>
+            <div style="background:#eee;padding:10px;border-radius:8px;text-align:center">[AdSense Slot]</div>
+          </div>
+          <div class="card">
+            <h3>สินค้าแนะนำ (Affiliate)</h3>
+            <a class="muted" href="#" target="_blank">คลิกดูสินค้า & รับส่วนลด</a>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>☕ สนับสนุน</h2>
+          <div class="card small">
+            <p>สแกน QR PromptPay เพื่อให้กำลังใจทีมงาน</p>
+            <img src="promptpay.png" alt="QR" style="width:100%;border-radius:8px;margin-top:6px">
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>📣 ติดตามเรา</h2>
+          <div class="card small">
+            <p>Facebook / YouTube / TikTok</p>
+            <a class="muted" href="#">Facebook Page</a><br>
+            <a class="muted" href="#">YouTube Channel</a><br>
+            <a class="muted" href="#">TikTok</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 ครบจังดอทคอม — All rights reserved.
+  </footer>
+
+  <!-- ====== SCRIPTS: RSS + YouTube + Horoscope ====== -->
+  <script>
+  // -----------------------------
+  // ---  CONFIG (แก้ค่าได้ตรงนี้)
+  // -----------------------------
+  const CONFIG = {
+    rssFeeds: [
+      // ใส่ RSS sources ที่ต้องการ (ตัวอย่าง)
+      {name:'ไทยรัฐ', url:'https://www.thairath.co.th/rss/news'},
+      {name:'ประชาชาติ', url:'https://www.prachachat.net/feed'},
+      {name:'ไทยรัฐข่าวสด', url:'https://www.khaosod.co.th/feed'},
+      // เพิ่มได้ตามต้องการ
+    ],
+    // --- YouTube Data API v3 (ต้องไปขอ API key ของตัวเอง) ---
+    YOUTUBE_API_KEY: 'YOUR_YOUTUBE_API_KEY', // --- EDIT HERE ---
+    YOUTUBE_PLAYLIST_ID: 'YOUR_PLAYLIST_ID_OR_UPLOADS_PLAYLIST', // --- EDIT HERE ---
+    youtubeMaxResults: 6,
+    // CORS Proxy (ตัวอย่าง) - แนะนำให้เปลี่ยนเป็น server-side proxy ของคุณเอง
+    corsProxy: 'https://api.allorigins.win/raw?url='
+  };
+
+  // -----------------------------
+  // --- Utility helpers
+  // -----------------------------
+  function el(id){ return document.getElementById(id) }
+  function formatDate(d){ return new Date(d).toLocaleString('th-TH'); }
+
+  // deterministic daily seed for horoscope (so same for everyone on same day)
+  function daySeed(){
+    const today = new Date();
+    return Number(today.getFullYear().toString() + (today.getMonth()+1).toString().padStart(2,'0') + today.getDate().toString().padStart(2,'0'));
+  }
+
+  // -----------------------------
+  // --- 1) FETCH RSS FEEDS and render
+  // -----------------------------
+  async function fetchRSS(url){
+    try{
+      const proxy = CONFIG.corsProxy + encodeURIComponent(url);
+      const res = await fetch(proxy);
+      const text = await res.text();
+      const doc = new DOMParser().parseFromString(text, "text/xml");
+      return doc;
+    } catch(e){
+      console.error('RSS fetch failed',url,e);
+      return null;
+    }
+  }
+
+  async function loadAllFeeds(){
+    const allItems = [];
+    for(const feed of CONFIG.rssFeeds){
+      const xml = await fetchRSS(feed.url);
+      if(!xml) continue;
+      const items = xml.querySelectorAll('item');
+      for(let i=0;i<Math.min(items.length,6);i++){
+        const it = items[i];
+        const title = it.querySelector('title') ? it.querySelector('title').textContent : 'ไม่มีหัวข้อ';
+        const link = it.querySelector('link') ? it.querySelector('link').textContent : '#';
+        const pub = it.querySelector('pubDate') ? it.querySelector('pubDate').textContent : '';
+        const desc = it.querySelector('description') ? it.querySelector('description').textContent : '';
+        allItems.push({title,link,pub,desc,source:feed.name});
+      }
+    }
+    // sort by pub date if possible (newest first)
+    allItems.sort((a,b)=>{
+      if(!a.pub || !b.pub) return 0;
+      return new Date(b.pub) - new Date(a.pub);
+    });
+    renderNews(allItems.slice(0,9));
+  }
+
+  function renderNews(items){
+    const newsList = el('newsList');
+    newsList.innerHTML = '';
+    if(!items.length) { newsList.innerHTML = '<p>ไม่พบข่าว</p>'; return; }
+    items.forEach(item=>{
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.innerHTML = `
+        <h3><a href="${item.link}" target="_blank" style="color:inherit;text-decoration:none">${item.title}</a></h3>
+        <div class="meta">${item.source} • ${item.pub ? new Date(item.pub).toLocaleString('th-TH') : ''}</div>
+        <p style="margin-top:8px;color:#444">${stripHtml(item.desc).slice(0,160)}...</p>
+      `;
+      newsList.appendChild(div);
+    });
+    // headline: first one big
+    const hd = el('headlines');
+    if(items[0]){
+      hd.innerHTML = `
+        <div class="card">
+          <h3 style="font-size:18px"><a href="${items[0].link}" target="_blank">${items[0].title}</a></h3>
+          <p class="meta">${items[0].source} • ${items[0].pub ? new Date(items[0].pub).toLocaleString('th-TH') : ''}</p>
+        </div>
+      `;
+    }
+  }
+
+  function stripHtml(html){
+    const tmp = document.createElement('div'); tmp.innerHTML = html || ''; return tmp.textContent || tmp.innerText || '';
+  }
+
+  // -----------------------------
+  // --- 2) YouTube fetch (Data API) -> show thumbnails + embeddable preview
+  // -----------------------------
+  async function loadYouTube(){
+    const key = CONFIG.YOUTUBE_API_KEY;
+    const pl = CONFIG.YOUTUBE_PLAYLIST_ID;
+    const container = el('videoList');
+    container.innerHTML = 'กำลังโหลดวิดีโอ...';
+    if(!key || !pl || key === 'YOUR_YOUTUBE_API_KEY'){
+      container.innerHTML = `<div class="card"><p class="small">ยังไม่ได้ตั้งค่า YouTube API key / playlist id — แสดงตัวอย่างฝังวิดีโอแทน</p>
+        <iframe width="100%" height="250" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe></div>`;
+      return;
+    }
+    try{
+      const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=${CONFIG.youtubeMaxResults}&playlistId=${encodeURIComponent(pl)}&key=${encodeURIComponent(key)}`;
+      const r = await fetch(url);
+      const data = await r.json();
+      if(data.error){ container.innerHTML = `<p>เกิดข้อผิดพลาดในการดึง YouTube: ${data.error.message}</p>`; return; }
+      const items = data.items || [];
+      const grid = document.createElement('div'); grid.className='video-grid';
+      items.forEach(it=>{
+        const snip = it.snippet;
+        const vidId = snip.resourceId ? snip.resourceId.videoId : (snip.videoOwnerChannelTitle ? snip.title : '');
+        const thumb = snip.thumbnails && (snip.thumbnails.medium || snip.thumbnails.default) ? (snip.thumbnails.medium.url || snip.thumbnails.default.url) : '';
+        const card = document.createElement('div'); card.className='card';
+        card.innerHTML = `
+          <div style="display:flex;gap:10px">
+            <div style="width:160px">
+              <a href="https://www.youtube.com/watch?v=${vidId}" target="_blank" class="video-thumb">
+                <img src="${thumb}" alt="${escapeHtml(snip.title)}">
+              </a>
+            </div>
+            <div style="flex:1">
+              <a href="https://www.youtube.com/watch?v=${vidId}" target="_blank" style="color:inherit;text-decoration:none">
+                <h3 style="font-size:15px;margin:0">${snip.title}</h3>
+              </a>
+              <div class="meta">${snip.channelTitle}</div>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+      container.innerHTML = '';
+      container.appendChild(grid);
+    } catch(e){
+      console.error(e);
+      container.innerHTML = '<p>ไม่สามารถดึงวิดีโอได้</p>';
+    }
+  }
+
+  function escapeHtml(s){ return (s+'').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+  // -----------------------------
+  // --- 3) Horoscope generator (deterministic per day)
+  // -----------------------------
+  const ZODIAC = ['เมษ','พฤษภ','เมถุน','กรกฎ','สิงห์','กันย์','ตุล','พิจิก','ธนู','มังกร','กุมภ์','มีน'];
+  // template phrases (mix & match)
+  const HORO_PARTS = {
+    love: ['ระวังความใจร้อน','มีโอกาสพบคนถูกใจ','ความสัมพันธ์แนบแน่นขึ้น','เป็นวันที่เหมาะกับการพูดคุยเปิดใจ'],
+    money: ['รายได้เพิ่มเล็กน้อย','ควรระวังการใช้จ่าย','มีโอกาสได้ข่าวเรื่องการเงิน','เวลาที่ดีในการวางแผนลงทุนระยะยาว'],
+    career: ['งานมั่นคง','โปรเจกต์ใหม่มาแรง','ระวังความคิดเห็นขัดแย้ง','ได้ผลงานที่น่าพอใจ'],
+    health: ['พักผ่อนให้เพียงพอ','ระวังอาการปวดเมื่อย','กินอาหารมีประโยชน์','เหมาะกับการเริ่มออกกำลังกายเบาๆ']
+  };
+
+  function pseudoRandom(seed){
+    // simple LCG
+    let s = seed % 2147483647;
+    return function(){
+      s = (s * 48271) % 2147483647;
+      return (s / 2147483647);
+    }
+  }
+
+  function generateDailyHoroscope(){
+    const seedBase = daySeed();
+    const rand = pseudoRandom(seedBase);
+    const results = {};
+    ZODIAC.forEach((sign, idx)=>{
+      const r1 = Math.floor(rand()*HORO_PARTS.love.length);
+      const r2 = Math.floor(rand()*HORO_PARTS.money.length);
+      const r3 = Math.floor(rand()*HORO_PARTS.career.length);
+      const r4 = Math.floor(rand()*HORO_PARTS.health.length);
+      const score = Math.floor(rand()*41)+60; // 60-100 (โชค)
+      results[sign] = {
+        sign,
+        love: HORO_PARTS.love[r1],
+        money: HORO_PARTS.money[r2],
+        career: HORO_PARTS.career[r3],
+        health: HORO_PARTS.health[r4],
+        score
+      };
+    });
+    return results;
+  }
+
+  function renderHoroscope(){
+    const data = generateDailyHoroscope();
+    const grid = el('horoscopeGrid');
+    grid.innerHTML = '';
+    Object.values(data).forEach(h=>{
+      const div = document.createElement('div');
+      div.className='card';
+      div.style.padding='12px';
+      div.innerHTML = `<strong>${h.sign}</strong>
+        <div style="margin-top:8px;font-size:13px">${h.love}</div>
+        <div style="margin-top:6px;font-size:12px;color:#666">การงาน: ${h.career}</div>
+        <div style="margin-top:6px;font-size:12px;color:#666">การเงิน: ${h.money}</div>
+        <div style="margin-top:6px;font-size:12px;color:#666">สุขภาพ: ${h.health}</div>
+        <div style="margin-top:8px;font-size:12px;color:#0d47a1">คะแนนวันนี้: ${h.score}%</div>
+      `;
+      grid.appendChild(div);
+    });
+  }
+
+  // -----------------------------
+  // --- Initialize + auto refresh
+  // -----------------------------
+  async function initAll(){
+    const now = new Date();
+    el('lastUpdated').querySelector('.last-updated').textContent = formatDate(now);
+    renderHoroscope();
+    await loadAllFeeds();
+    await loadYouTube();
+  }
+
+  // run now, refresh every 10 minutes
+  initAll();
+  setInterval(initAll, 10 * 60 * 1000);
+
+  </script>
+</body>
+</html>
