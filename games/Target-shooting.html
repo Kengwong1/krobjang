@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เกมยิงเป้า - ฝึกความแม่นยำ</title>
+    <style>
+        body {
+            font-family: 'Sarabun', 'Tahoma', sans-serif;
+            background: linear-gradient(135deg, #2c3e50 0%, #4a235a 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            overflow: hidden;
+        }
+        
+        .game-container {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            width: 95%;
+            max-width: 800px;
+            padding: 30px;
+            text-align: center;
+            border: 2px solid #e74c3c;
+            position: relative;
+        }
+        
+        h1 {
+            margin-top: 0;
+            font-size: 32px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            color: #f1c40f;
+            margin-bottom: 20px;
+        }
+        
+        .game-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid #3498db;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #f1c40f;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .game-area {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(to bottom, #8B4513, #654321);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+            border: 3px solid #5D4037;
+            cursor: crosshair;
+        }
+        
+        .target {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #ff0000 0%, #8B0000 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: pulse 1s infinite;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+        }
+        
+        .target::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, #ffff00 0%, #FFD700 100%);
+            border-radius: 50%;
+        }
+        
+        .target::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #000000 0%, #333333 100%);
+            border-radius: 50%;
+        }
+        
+        .hit-effect {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,0,0,0.6) 70%, transparent 100%);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: hitEffect 0.6s forwards;
+        }
+        
+        .crosshair {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            pointer-events: none;
+            z-index: 100;
+        }
+        
+        .crosshair::before,
+        .crosshair::after {
+            content: '';
+            position: absolute;
+            background: #f1c40f;
+            box-shadow: 0 0 10px #f1c40f;
+        }
+        
+        .crosshair::before {
+            width: 30px;
+            height: 3px;
+            top: 13px;
+            left: 0;
+        }
+        
+        .crosshair::after {
+            width: 3px;
+            height: 30px;
+            top: 0;
+            left: 13px;
+        }
+        
+        .controls {
+            margin: 20px 0;
+        }
+        
+        .action-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 0 10px;
+        }
+        
+        .action-btn:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .start-btn {
+            background: #2ecc71;
+        }
+        
+        .start-btn:hover {
+            background: #27ae60;
+        }
+        
+        .game-over {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .game-over-content {
+            background: linear-gradient(135deg, #2c3e50 0%, #4a235a 100%);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            border: 3px solid #f1c40f;
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        .game-over h2 {
+            font-size: 36px;
+            margin: 0 0 20px 0;
+            color: #f1c40f;
+        }
+        
+        .final-score {
+            font-size: 24px;
+            margin: 15px 0;
+            color: #2ecc71;
+        }
+        
+        .accuracy {
+            font-size: 20px;
+            color: #3498db;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 0, 0, 0.7); }
+            50% { transform: scale(1.1); box-shadow: 0 0 25px rgba(255, 0, 0, 0.9); }
+            100% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 0, 0, 0.7); }
+        }
+        
+        @keyframes hitEffect {
+            0% { transform: scale(0.5); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+        
+        .instructions {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>🎯 เกมยิงเป้า - ฝึกความแม่นยำ 🎯</h1>
+        
+        <div class="game-stats">
+            <div class="stat-item">
+                <div class="stat-value" id="score">0</div>
+                <div class="stat-label">คะแนน</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="time">30</div>
+                <div class="stat-label">เวลา (วินาที)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="hits">0</div>
+                <div class="stat-label">ยิงถูก</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="shots">0</div>
+                <div class="stat-label">ยิงทั้งหมด</div>
+            </div>
+        </div>
+        
+        <div class="game-area" id="gameArea">
+            <!-- เป้าจะถูกสร้างด้วย JavaScript -->
+        </div>
+        
+        <div class="controls">
+            <button class="action-btn start-btn" id="startBtn" onclick="startGame()">เริ่มเกม</button>
+            <button class="action-btn" onclick="resetGame()">เริ่มใหม่</button>
+        </div>
+        
+        <div class="instructions">
+            <strong>วิธีเล่น:</strong> คลิกที่เป้าเพื่อยิง! คุณมีเวลา 30 วินาที<br>
+            เป้าแต่ละอันให้ 10 คะแนน ยิงให้ได้มากที่สุด!<br>
+            ความแม่นยำ = (จำนวนยิงถูก ÷ จำนวนยิงทั้งหมด) × 100%
+        </div>
+    </div>
+    
+    <div class="crosshair" id="crosshair"></div>
+    
+    <div class="game-over" id="gameOver">
+        <div class="game-over-content">
+            <h2>เกมสิ้นสุด!</h2>
+            <div class="final-score">คะแนนสุดท้าย: <span id="finalScore">0</span></div>
+            <div class="accuracy">ความแม่นยำ: <span id="finalAccuracy">0</span>%</div>
+            <button class="action-btn start-btn" onclick="resetGame()">เล่นอีกครั้ง</button>
+        </div>
+    </div>
+
+    <script>
+        // ตัวแปรเกม
+        let score = 0;
+        let timeLeft = 30;
+        let hits = 0;
+        let shots = 0;
+        let gameActive = false;
+        let timer = null;
+        let targetInterval = null;
+        let targets = [];
+        const gameArea = document.getElementById('gameArea');
+        const crosshair = document.getElementById('crosshair');
+        
+        // อัพเดท UI
+        function updateStats() {
+            document.getElementById('score').textContent = score;
+            document.getElementById('time').textContent = timeLeft;
+            document.getElementById('hits').textContent = hits;
+            document.getElementById('shots').textContent = shots;
+        }
+        
+        // สร้างเป้าใหม่
+        function createTarget() {
+            if (!gameActive) return;
+            
+            const target = document.createElement('div');
+            target.className = 'target';
+            
+            // ตำแหน่งสุ่ม
+            const maxX = gameArea.offsetWidth - 60;
+            const maxY = gameArea.offsetHeight - 60;
+            const x = Math.floor(Math.random() * maxX);
+            const y = Math.floor(Math.random() * maxY);
+            
+            target.style.left = x + 'px';
+            target.style.top = y + 'px';
+            
+            // เพิ่ม event listener
+            target.addEventListener('click', () => hitTarget(target, x, y));
+            
+            gameArea.appendChild(target);
+            targets.push(target);
+            
+            // ลบเป้าหลังจาก 2 วินาทีถ้ายังไม่ถูกยิง
+            setTimeout(() => {
+                if (gameArea.contains(target)) {
+                    gameArea.removeChild(target);
+                    targets = targets.filter(t => t !== target);
+                }
+            }, 2000);
+        }
+        
+        // ยิงเป้า
+        function hitTarget(target, x, y) {
+            if (!gameActive) return;
+            
+            // สร้างเอฟเฟกต์การยิง
+            createHitEffect(x + 30, y + 30);
+            
+            // อัพเดทคะแนน
+            score += 10;
+            hits++;
+            shots++;
+            
+            // ลบเป้า
+            gameArea.removeChild(target);
+            targets = targets.filter(t => t !== target);
+            
+            updateStats();
+        }
+        
+        // สร้างเอฟเฟกต์การยิง
+        function createHitEffect(x, y) {
+            const effect = document.createElement('div');
+            effect.className = 'hit-effect';
+            effect.style.left = (x - 40) + 'px';
+            effect.style.top = (y - 40) + 'px';
+            gameArea.appendChild(effect);
+            
+            // ลบเอฟเฟกต์หลังจากแอนิเมชันเสร็จ
+            setTimeout(() => {
+                if (gameArea.contains(effect)) {
+                    gameArea.removeChild(effect);
+                }
+            }, 600);
+        }
+        
+        // จัดการการคลิกที่พื้นหลัง (ยิงพลาด)
+        function handleMiss(event) {
+            if (!gameActive) return;
+            
+            const rect = gameArea.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            
+            // สร้างเอฟเฟกต์การยิง (สีเทาสำหรับยิงพลาด)
+            const effect = document.createElement('div');
+            effect.className = 'hit-effect';
+            effect.style.left = (x - 40) + 'px';
+            effect.style.top = (y - 40) + 'px';
+            effect.style.background = 'radial-gradient(circle, rgba(200,200,200,0.8) 0%, rgba(100,100,100,0.6) 70%, transparent 100%)';
+            gameArea.appendChild(effect);
+            
+            setTimeout(() => {
+                if (gameArea.contains(effect)) {
+                    gameArea.removeChild(effect);
+                }
+            }, 600);
+            
+            shots++;
+            updateStats();
+        }
+        
+        // เริ่มเกม
+        function startGame() {
+            if (gameActive) return;
+            
+            // รีเซ็ตค่า
+            score = 0;
+            timeLeft = 30;
+            hits = 0;
+            shots = 0;
+            gameActive = true;
+            
+            // ล้างเป้าเก่า
+            targets.forEach(target => {
+                if (gameArea.contains(target)) {
+                    gameArea.removeChild(target);
+                }
+            });
+            targets = [];
+            
+            updateStats();
+            document.getElementById('startBtn').disabled = true;
+            
+            // เริ่มจับเวลา
+            timer = setInterval(() => {
+                timeLeft--;
+                updateStats();
+                
+                if (timeLeft <= 0) {
+                    endGame();
+                }
+            }, 1000);
+            
+            // สร้างเป้าทุกๆ 800ms
+            targetInterval = setInterval(createTarget, 800);
+        }
+        
+        // สิ้นสุดเกม
+        function endGame() {
+            gameActive = false;
+            clearInterval(timer);
+            clearInterval(targetInterval);
+            
+            // ล้างเป้าที่เหลือ
+            targets.forEach(target => {
+                if (gameArea.contains(target)) {
+                    gameArea.removeChild(target);
+                }
+            });
+            targets = [];
+            
+            // คำนวณความแม่นยำ
+            const accuracy = shots > 0 ? Math.round((hits / shots) * 100) : 0;
+            
+            // แสดงผลลัพธ์
+            document.getElementById('finalScore').textContent = score;
+            document.getElementById('finalAccuracy').textContent = accuracy;
+            document.getElementById('gameOver').style.display = 'flex';
+        }
+        
+        // รีเซ็ตเกม
+        function resetGame() {
+            gameActive = false;
+            clearInterval(timer);
+            clearInterval(targetInterval);
+            
+            // ล้างเป้าทั้งหมด
+            targets.forEach(target => {
+                if (gameArea.contains(target)) {
+                    gameArea.removeChild(target);
+                }
+            });
+            targets = [];
+            
+            // รีเซ็ตค่า
+            score = 0;
+            timeLeft = 30;
+            hits = 0;
+            shots = 0;
+            
+            updateStats();
+            document.getElementById('startBtn').disabled = false;
+            document.getElementById('gameOver').style.display = 'none';
+        }
+        
+        // ติดตามเมาส์สำหรับ crosshair
+        document.addEventListener('mousemove', (e) => {
+            crosshair.style.left = (e.clientX - 15) + 'px';
+            crosshair.style.top = (e.clientY - 15) + 'px';
+        });
+        
+        // ป้องกัน context menu
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+        
+        // เพิ่ม event listener สำหรับการยิงพลาด
+        gameArea.addEventListener('click', handleMiss);
+        
+        // เริ่มต้น
+        updateStats();
+    </script>
+</body>
+</html>
