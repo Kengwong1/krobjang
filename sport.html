@@ -37,7 +37,7 @@
             opacity: 0.9;
         }
 
-        /* Navigation Bar */
+        /* Navigation Bar (CSS ยังคงอยู่เพื่อรองรับสไตล์จาก nav.html) */
         .main-nav {
             background: #fff;
             padding: 12px 20px;
@@ -158,17 +158,7 @@
         <p>ข่าวสารไทยครบทุกหมวด อัปเดตอัตโนมัติทุกวัน</p>
     </header>
 
-    <nav class="main-nav">
-        <a href="index.html">หน้าแรก</a>
-        <a href="news.html">ข่าว</a>
-        <a href="lotto.html">ตรวจหวย</a>
-        <a href="horoscope.html">ดูดวง</a>
-        <a href="sport.html" class="active">กีฬา</a>
-        <a href="video.html">วีดีโอ</a>
-        <a href="games.html">เกมส์</a>
-        <a href="marketplace.html">ซื้อ-ขาย</a>
-        <a href="contact.html">ติดต่อเรา</a>
-    </nav>
+    <div id="navigation-placeholder"></div>
 
     <div class="container">
         <div class="section">
@@ -182,7 +172,40 @@
     </footer>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        // 📌 ฟังก์ชันใหม่: สำหรับโหลดเมนูจาก nav.html และจัดการ active link
+        async function loadNav() {
+            try {
+                const response = await fetch('nav.html'); 
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const html = await response.text();
+                const placeholder = document.getElementById('navigation-placeholder');
+                placeholder.innerHTML = html;
+
+                // Logic to set the active link dynamically
+                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+                const navLinks = placeholder.querySelectorAll('.main-nav a');
+                
+                // 1. ลบ active class จากทุก link
+                navLinks.forEach(link => link.classList.remove('active'));
+                
+                // 2. เพิ่ม active class ให้กับ link ของหน้านี้ (sport.html)
+                navLinks.forEach(link => {
+                    const linkHref = link.getAttribute('href');
+                    if (linkHref === currentPage) {
+                        link.classList.add('active');
+                    }
+                });
+                
+            } catch (error) {
+                console.error('Error loading navigation:', error);
+                document.getElementById('navigation-placeholder').innerHTML = '<p style="text-align: center; padding: 10px; background: #fff; color: red;">ไม่สามารถโหลดเมนูได้</p>';
+            }
+        }
+
+        // 📌 ฟังก์ชันเดิม: สำหรับโหลดข่าว
+        function loadSportNews() {
             const container = document.getElementById('news-container');
             const rssUrl = "https://www.thairath.co.th/rss/sport";
 
@@ -199,6 +222,7 @@
 
                     items.forEach(item => {
                         let imgSrc = "";
+                        // พยายามดึงรูปภาพจาก enclosure, thumbnail, หรือจาก description
                         if (item.enclosure && item.enclosure.link) {
                             imgSrc = item.enclosure.link;
                         } else if (item.thumbnail) {
@@ -228,8 +252,13 @@
                     container.innerHTML = "<p>ไม่สามารถโหลดข่าวได้ 😢</p>";
                     console.error("Error fetching RSS feed:", err);
                 });
+        }
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            loadNav(); // 📌 โหลดเมนูอัตโนมัติ
+            loadSportNews(); // โหลดข่าว
         });
     </script>
 </body>
-
 </html>
