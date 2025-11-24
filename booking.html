@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>จองออนไลน์ - ครบจังดอทคอม</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS ที่ใช้ร่วมกับหน้าอื่นๆ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Kanit', sans-serif;
+        }
+        body {
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        .header-container {
+            background-color: #004d99;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .header-container h1 {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+        }
+        .header-container p {
+            font-size: 1.2em;
+        }
+        .main-nav {
+            background-color: white;
+            padding: 10px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .main-nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .main-nav a:hover, .main-nav a.active {
+            background-color: #0066cc;
+            color: white;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+        }
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        .section h2 {
+            margin-bottom: 20px;
+            color: #d90000;
+            font-size: 1.8em;
+            border-bottom: 3px solid #d90000;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        .footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        /* สไตล์เฉพาะหน้านี้ */
+        .booking-header {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #004d99;
+            font-size: 2em;
+        }
+        .booking-nav {
+            background: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgb(0 0 0 / 0.12);
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .booking-nav a {
+            text-decoration: none;
+            color: #004d99;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 24px;
+            border: 2px solid transparent;
+            transition: background 0.3s, border-color 0.3s;
+        }
+        .booking-nav a:hover, .booking-nav a:focus {
+            background: #004d99;
+            color: white;
+            border-color: #004d99;
+        }
+        .ticket-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+        .ticket-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 3px 15px rgb(0 0 0 / 0.1);
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .ticket-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgb(0 77 153 / 0.2);
+        }
+        .ticket-image {
+            width: 100%;
+            max-height: 140px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+        }
+        .ticket-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #004d99;
+            margin-bottom: 10px;
+        }
+        .ticket-desc {
+            font-size: 0.95em;
+            margin-bottom: 18px;
+            color: #555;
+            min-height: 48px;
+        }
+        .btn-book {
+            display: inline-block;
+            background: linear-gradient(90deg,#0099ff,#004d99 70%);
+            color: white;
+            padding: 10px 28px;
+            border-radius: 24px;
+            font-weight: 700;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px 12px #0099ff88;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+        .btn-book:hover {
+            background: linear-gradient(90deg,#007bff,#003d7a);
+            transform: scale(1.05);
+        }
+        .ads-section {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .ads-section h2 {
+            color: #d90000;
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+        .ad-placeholder {
+            background: #eee;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            color: #666;
+            font-style: italic;
+        }
+        .support-card {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        .support-card h3 {
+            margin: 0 0 10px;
+            font-size: 1em;
+            color: #004d99;
+        }
+        .qr-code {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+            display: block;
+            margin: 10px auto 0;
+        }
+        .social-links {
+            margin-top: 15px;
+        }
+        .social-links a {
+            display: block;
+            margin: 5px 0;
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 460px) {
+            .ticket-card {
+                padding: 15px;
+            }
+            .ticket-title {
+                font-size: 1.1em;
+            }
+            .booking-nav {
+                gap: 10px;
+                padding: 8px 12px;
+            }
+            .booking-nav a {
+                padding: 6px 12px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-container">
+        <h1>ครบจังดอทคอม</h1>
+        <p>ข่าว เกม บันเทิง ไอที ไลฟ์สไตล์ ครบจบในเว็บเดียว</p>
+    </header>
+
+    <!-- จุดที่จะโหลดเมนูจาก nav.html -->
+    <div id="navigation-placeholder"></div>
+
+    <div class="container">
+        <div class="content-area">
+            <h2 class="booking-header">จองออนไลน์</h2>
+            
+            <nav class="booking-nav">
+                <a href="#tickets">จองตั๋ว</a>
+                <a href="#hotels">จองโรงแรม</a>
+                <a href="#car-rental">จองรถเช่า</a>
+                <a href="#tours">จองทัวร์</a>
+                <a href="#activities">จองกิจกรรม</a>
+                <a href="#restaurants">จองร้านอาหาร</a>
+            </nav>
+            
+            <section id="tickets" class="section">
+                <h2>จองตั๋ว</h2>
+                <div class="ticket-grid">
+                    <div class="ticket-card">
+                        <img src="https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=400&q=80" alt="ตั๋วหนัง" class="ticket-image" />
+                        <div class="ticket-title">จองตั๋วหนัง</div>
+                        <div class="ticket-desc">เลือกโรงหนังและรอบที่นั่งที่คุณต้องการได้ง่าย ๆ</div>
+                        <a href="https://www.majorcineplex.com" target="_blank" rel="noopener" class="btn-book">จองตั๋วหนัง</a>
+                    </div>
+                    <div class="ticket-card">
+                        <img src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=400&q=80" alt="ตั๋วคอนเสิร์ต" class="ticket-image" />
+                        <div class="ticket-title">จองตั๋วคอนเสิร์ต</div>
+                        <div class="ticket-desc">ซื้อบัตรเข้าชมคอนเสิร์ตศิลปินโปรดของคุณง่าย ๆ</div>
+                        <a href="https://www.thaiticketmajor.com" target="_blank" rel="noopener" class="btn-book">จองตั๋วคอนเสิร์ต</a>
+                    </div>
+                    <div class="ticket-card">
+                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="ตั๋วเครื่องบิน" class="ticket-image" />
+                        <div class="ticket-title">จองตั๋วเครื่องบิน</div>
+                        <div class="ticket-desc">จองตั๋วเครื่องบินไปยังจุดหมายปลายทางทั่วโลก</div>
+                        <a href="https://www.agoda.com/flights" target="_blank" rel="noopener" class="btn-book">จองตั๋วเครื่องบิน</a>
+                    </div>
+                    <div class="ticket-card">
+                        <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=400&q=80" alt="ตั๋วรถทัวร์" class="ticket-image" />
+                        <div class="ticket-title">จองตั๋วรถทัวร์ / รถไฟ</div>
+                        <div class="ticket-desc">จองตั๋วเดินทางด้วยรถทัวร์หรือรถไฟ สะดวกทุกที่ทุกเวลา</div>
+                        <a href="https://www.railway.co.th/web/" target="_blank" rel="noopener" class="btn-book">จองตั๋วรถทัวร์/รถไฟ</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="hotels" class="section">
+                <h2>จองโรงแรม / ที่พัก</h2>
+                <div class="ticket-grid">
+                    <div class="ticket-card">
+                        <img src="images/hotel.png" alt="โรงแรม" class="ticket-image" />
+                        <div class="ticket-title">จองโรงแรม</div>
+                        <div class="ticket-desc">ค้นหาและจองโรงแรม รีสอร์ต ที่พักทั่วไทยและทั่วโลก</div>
+                        <a href="https://www.agoda.com" target="_blank" rel="noopener" class="btn-book">จองโรงแรม</a>
+                    </div>
+                    <div class="ticket-card">
+                        <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=400&q=80" alt="โฮมสเตย์" class="ticket-image" />
+                        <div class="ticket-title">จองโฮมสเตย์</div>
+                        <div class="ticket-desc">สัมผัสประสบการณ์ที่พักสไตล์โฮมสเตย์ในบรรยากาศอบอุ่น</div>
+                        <a href="https://www.airbnb.com" target="_blank" rel="noopener" class="btn-book">จองโฮมสเตย์</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="car-rental" class="section">
+                <h2>จองรถเช่า</h2>
+                <div class="ticket-grid">
+                    <div class="ticket-card">
+                        <img src="images/car.png" alt="รถเช่า" class="ticket-image" />
+                        <div class="ticket-title">รถเช่าในประเทศ</div>
+                        <div class="ticket-desc">รถยนต์เช่ารายวัน รายชั่วโมง สำหรับท่องเที่ยวในประเทศ</div>
+                        <a href="https://www.hertz.com" target="_blank" rel="noopener" class="btn-book">จองรถเช่า</a>
+                    </div>
+                    <div class="ticket-card">
+                        <img src="images/car2.png" alt="รถเช่าต่างประเทศ" class="ticket-image" />
+                        <div class="ticket-title">รถเช่านอกประเทศ</div>
+                        <div class="ticket-desc">จัดรถเช่าสำหรับการเดินทางไปต่างประเทศอย่างสะดวก</div>
+                        <a href="https://www.avis.com" target="_blank" rel="noopener" class="btn-book">จองรถเช่า</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tours" class="section">
+                <h2>จองทัวร์ / แพ็กเกจท่องเที่ยว</h2>
+                <div class="ticket-grid">
+                    <div class="ticket-card">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" alt="ทัวร์" class="ticket-image" />
+                        <div class="ticket-title">ทัวร์ในประเทศ</div>
+                        <div class="ticket-desc">แพ็กเกจทัวร์และกิจกรรมในประเทศไทยหลากหลายสไตล์</div>
+                        <a href="https://www.kkday.com" target="_blank" rel="noopener" class="btn-book">จองทัวร์ในประเทศ</a>
+                    </div>
+                    <div class="ticket-card">
+                        <img src="images/Foreign tours.png" alt="ทัวร์ต่างประเทศ" class="ticket-image" />
+                        <div class="ticket-title">ทัวร์ต่างประเทศ</div>
+                        <div class="ticket-desc">เลือกซื้อแพ็กเกจทัวร์ท่องเที่ยวทั่วโลกจากผู้ให้บริการมืออาชีพ</div>
+                        <a href="https://www.klook.com" target="_blank" rel="noopener" class="btn-book">จองทัวร์ต่างประเทศ</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="activities" class="section">
+                <h2>จองกิจกรรม / บัตรเข้าชมสถานที่</h2>
+                <div class="ticket-grid">
+                    <div class="ticket-card">
+                        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="สวนสนุก" class="ticket-image" />
+                        <div class="ticket-title">สวนสนุก</div>
+                        <div class="ticket-desc">ซื้อบัตรเข้าชมสวนสนุกและกิจกรรมบันเทิงต่าง ๆ</div>
+                        <a href="https://www.ticketmelon.com" target="_blank" rel="noopener" class="btn-book">จองสวนสนุก</a>
+                    </div>
+                    <div class="ticket-card">
+                        <img src="images/Museums and Exhibits.png" alt="พิพิธภัณฑ์" class="ticket-image" />
+                        <div class="ticket-title">พิพิธภัณฑ์และงานแสดง</div>
+                        <div class="ticket-desc">สำรองบัตรเข้าชมสถานที่ท่องเที่ยวและงานแสดงพิเศษ</div>
+                        <a href="https://www.eventpop.me" target="_blank" rel="noopener" class="btn-book">จองบัตรพิพิธภัณฑ์</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="restaurants" class="section">
+                <h2>จองร้านอาหาร</h2>
+                <div class="ticket-grid">
+                    <div class="ticket-card">
+                        <img src="https://images.unsplash.com/photo-1544511916-0148ccdeb877?auto=format&fit=crop&w=400&q=80" alt="ร้านอาหาร" class="ticket-image" />
+                        <div class="ticket-title">สำรองโต๊ะร้านอาหาร</div>
+                        <div class="ticket-desc">จองโต๊ะร้านอาหารยอดนิยมในพื้นที่คุณ</div>
+                        <a href="https://eatigo.com" target="_blank" rel="noopener" class="btn-book">จองร้านอาหาร</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <aside class="sidebar">
+            <!-- โฆษณา AdSense -->
+            <div class="ads-section">
+                <h2>💰 สนับสนุนเว็บไซต์</h2>
+                <div style="text-align: center;">
+                    <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-2068902667667616" 
+                        data-ad-slot="1706997713" 
+                        data-ad-format="auto"
+                        data-full-width-responsive="true"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+                <div class="ad-placeholder" style="margin-top: 10px;">
+                    [โฆษณา Affiliate]
+                </div>
+            </div>
+            
+            <!-- QR Code สนับสนุน -->
+            <div class="ads-section">
+                <h2>☕ สนับสนุนเรา</h2>
+                <div class="support-card">
+                    <p>หากเนื้อหานี้มีประโยชน์ ช่วยสนับสนุนทีมงานได้นะครับ</p>
+                    <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
+                </div>
+            </div>
+
+            <!-- โซเชียล -->
+            <div class="ads-section">
+                <h2>📣 ติดตามเรา</h2>
+                <div class="support-card">
+                    <p>ติดตามข่าวสารและอัปเดตได้ที่</p>
+                    <div class="social-links">
+                        <a href="#" target="_blank">Facebook Page</a>
+                        <a href="https://youtube.com/@phongphunphommanee8045?si=6Qc-xMaBicyMaFYo" target="_blank">YouTube Channel</a>
+                        <a href="https://www.tiktok.com/@kengwong007?is_from_webapp=1&sender_device=pc" target="_blank">TikTok</a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 ครบจังดอทคอม | <a href="#" style="color:white; text-decoration: underline;">นโยบายความเป็นส่วนตัว</a></p>
+    </footer>
+
+    <script>
+        // ฟังก์ชันสำหรับโหลดเมนูจาก nav.html และจัดการ active link
+        async function loadNav() {
+            try {
+                const response = await fetch('nav.html');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const html = await response.text();
+                const placeholder = document.getElementById('navigation-placeholder');
+                placeholder.innerHTML = html;
+
+                // Logic to set the active link dynamically
+                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+                const navLinks = placeholder.querySelectorAll('.main-nav a');
+
+                // ลบ active class จากทุก link
+                navLinks.forEach(link => link.classList.remove('active'));
+
+                // เพิ่ม active class ให้กับ link ของหน้านี้
+                navLinks.forEach(link => {
+                    if (link.href.endsWith(currentPage)) {
+                        link.classList.add('active');
+                    }
+                });
+
+            } catch (error) {
+                console.error('Error loading navigation:', error);
+                document.getElementById('navigation-placeholder').innerHTML = '<p style="text-align: center; padding: 10px; color: red;">ไม่สามารถโหลดเมนูได้</p>';
+            }
+        }
+
+        // เรียกใช้ฟังก์ชันโหลดเมนูเมื่อหน้าเว็บโหลดเสร็จ
+        document.addEventListener("DOMContentLoaded", function () {
+            loadNav();
+        });
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
+</body>
+</html>
