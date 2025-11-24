@@ -92,8 +92,8 @@
             padding: 20px 10px;
         }
         .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+            transform: translateY(-4px); /* ลดการยกตัวลง */
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1); /* ลดขนาดเงา */
         }
         .card h3 {
             font-size: 1.2em;
@@ -108,32 +108,40 @@
             width: 80px;
             height: 80px;
         }
+        
+        /* 💡 การปรับปรุงแถบสี (Banners) ให้ดูเล็กลงและเป็นมืออาชีพ */
         .horoscope-type-container {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 10px; /* ลดระยะห่างระหว่างแถบ */
         }
         .horoscope-type-card {
-            display: block;
-            padding: 25px;
+            display: flex; /* ใช้ flex เพื่อจัดวางข้อความตรงกลาง */
+            align-items: center;
+            justify-content: center;
+            padding: 15px 25px; /* ลดความสูงของ Padding */
+            height: 60px; /* กำหนดความสูงให้คงที่ */
             text-align: center;
             text-decoration: none;
             color: white;
             font-weight: bold;
-            border-radius: 10px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            font-size: 1.5em;
+            border-radius: 8px; /* ปรับลด Border Radius เล็กน้อย */
+            transition: box-shadow 0.3s, transform 0.3s;
+            font-size: 1.2em; /* ลดขนาดตัวอักษร */
         }
         .horoscope-type-card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+            transform: translateY(-2px); /* เปลี่ยนเป็นยกตัวเบา ๆ */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* เปลี่ยนเป็นเงาที่ดูมิติขึ้น */
         }
+        
+        /* สีของแต่ละแถบยังคงเดิม */
         .daily-horoscope-banner { background-color: #ff9900; }
         .zodiac-year-banner { background-color: #008080; }
         .tarot-banner { background-color: #8A2BE2; }
         .birthday-banner { background-color: #e91e63; }
         .phone-number-banner { background-color: #4CAF50; }
         .articles-banner { background-color: #ff5722; }
+
         .footer {
             background-color: #222;
             color: white;
@@ -141,7 +149,7 @@
             padding: 20px;
             margin-top: 40px;
         }
-        /* 📌 CSS สำหรับ AdSense / Support */
+        /* CSS สำหรับ AdSense / Support */
         .adsense-unit {
             text-align: center;
             margin: 20px 0;
@@ -177,6 +185,7 @@
             .header-container h1 { font-size: 2em; }
             .header-container p { font-size: 1em; }
             .main-nav a { padding: 8px 15px; font-size: 0.9em; }
+            .horoscope-type-card { font-size: 1.1em; height: 50px; } /* ปรับขนาดบนมือถือเพิ่ม */
         }
     </style>
 </head>
@@ -279,8 +288,7 @@
             <p>เนื้อหาดูดวงแม่นๆ นี้เป็นประโยชน์หรือไม่? ท่านสามารถสนับสนุนการทำงานของทีมงานได้ครับ/ค่ะ</p>
             <img src="images/promptpay.png" alt="QR PromptPay">
         </div>
-
-        </div>
+    </div>
 
     <div class="adsense-unit">
         <ins class="adsbygoogle"
@@ -297,7 +305,6 @@
     </footer>
     
     <script>
-        // 📌 ฟังก์ชันใหม่: สำหรับโหลดเมนูจาก nav.html และจัดการ active link
         async function loadNav() {
             try {
                 const response = await fetch('nav.html'); 
@@ -308,17 +315,13 @@
                 const placeholder = document.getElementById('navigation-placeholder');
                 placeholder.innerHTML = html;
 
-                // Logic to set the active link dynamically
-                const currentPage = window.location.pathname.split('/').pop() || 'horoscope.html'; // กำหนด default เป็น horoscope.html
+                const currentPage = window.location.pathname.split('/').pop() || 'horoscope.html';
                 const navLinks = placeholder.querySelectorAll('.main-nav a');
                 
-                // 1. ลบ active class จากทุก link
                 navLinks.forEach(link => link.classList.remove('active'));
                 
-                // 2. เพิ่ม active class ให้กับ link ของหน้านี้
                 navLinks.forEach(link => {
                     const linkHref = link.getAttribute('href').split('/').pop();
-                    // ตรวจสอบทั้งชื่อไฟล์เป๊ะๆ และกรณีที่ไม่มีชื่อไฟล์ (สำหรับหน้าแรก)
                     if (linkHref === currentPage || (linkHref === 'index.html' && currentPage === '')) {
                         link.classList.add('active');
                     }
@@ -329,13 +332,11 @@
                 document.getElementById('navigation-placeholder').innerHTML = '<p style="text-align: center; padding: 10px; background: #fff; color: red;">ไม่สามารถโหลดเมนูได้</p>';
             }
         }
-        // สิ้นสุดฟังก์ชัน loadNav()
 
         document.addEventListener("DOMContentLoaded", function () {
-            loadNav(); // 📌 เรียกใช้ฟังก์ชันโหลดเมนู
+            loadNav();
         });
 
     </script>
-    
-    </body>
+</body>
 </html>
