@@ -92,8 +92,8 @@
             padding: 20px 10px;
         }
         .card:hover {
-            transform: translateY(-4px); /* ลดการยกตัวลง */
-            box-shadow: 0 6px 12px rgba(0,0,0,0.1); /* ลดขนาดเงา */
+            transform: translateY(-4px); /* ปรับสไตล์ Card ให้ยกตัวเล็กน้อย */
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
         }
         .card h3 {
             font-size: 1.2em;
@@ -109,7 +109,7 @@
             height: 80px;
         }
         
-        /* 💡 การปรับปรุงแถบสี (Banners) ให้ดูเล็กลงและเป็นมืออาชีพ */
+        /* 💡 การปรับปรุงแถบสี (Banners) */
         .horoscope-type-container {
             display: flex;
             flex-direction: column;
@@ -149,12 +149,13 @@
             padding: 20px;
             margin-top: 40px;
         }
+        
         /* CSS สำหรับ AdSense / Support */
         .adsense-unit {
             text-align: center;
             margin: 20px 0;
-            background-color: white;
             padding: 10px;
+            background-color: white;
             border-radius: 10px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
@@ -305,6 +306,7 @@
     </footer>
     
     <script>
+        // โค้ดสำหรับโหลด Navigation Bar (main-nav) เหมือนหน้าอื่น
         async function loadNav() {
             try {
                 const response = await fetch('nav.html'); 
