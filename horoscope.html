@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ดูดวงแม่นๆ 12 ราศี - ครบจังดอทคอม</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
+
     <style>
         /* CSS ที่ใช้ร่วมกับหน้าอื่นๆ */
+        :root { --main-color: #004d99; --accent-color: #0066cc; }
         * {
             margin: 0;
             padding: 0;
@@ -18,7 +21,7 @@
             color: #333;
         }
         .header-container {
-            background-color: #004d99;
+            background-color: var(--main-color);
             color: white;
             padding: 30px 20px;
             text-align: center;
@@ -30,7 +33,6 @@
         .header-container p {
             font-size: 1.2em;
         }
-        /* 📌 CSS สำหรับ .main-nav ยังคงอยู่เพื่อรองรับสไตล์จาก nav.html */
         .main-nav {
             background-color: white;
             padding: 10px 20px;
@@ -49,7 +51,7 @@
             transition: background-color 0.3s, color 0.3s;
         }
         .main-nav a:hover, .main-nav a.active {
-            background-color: #0066cc;
+            background-color: var(--accent-color);
             color: white;
         }
         .container {
@@ -95,7 +97,7 @@
         }
         .card h3 {
             font-size: 1.2em;
-            color: #004d99;
+            color: var(--main-color);
             margin-top: 10px;
         }
         .card p {
@@ -126,30 +128,55 @@
             transform: scale(1.02);
             box-shadow: 0 6px 16px rgba(0,0,0,0.15);
         }
-        .daily-horoscope-banner {
-            background-color: #ff9900;
-        }
-        .zodiac-year-banner {
-            background-color: #008080;
-        }
-        .tarot-banner {
-            background-color: #8A2BE2;
-        }
-        .birthday-banner {
-            background-color: #e91e63;
-        }
-        .phone-number-banner {
-            background-color: #4CAF50;
-        }
-        .articles-banner {
-            background-color: #ff5722;
-        }
+        .daily-horoscope-banner { background-color: #ff9900; }
+        .zodiac-year-banner { background-color: #008080; }
+        .tarot-banner { background-color: #8A2BE2; }
+        .birthday-banner { background-color: #e91e63; }
+        .phone-number-banner { background-color: #4CAF50; }
+        .articles-banner { background-color: #ff5722; }
         .footer {
             background-color: #222;
             color: white;
             text-align: center;
             padding: 20px;
             margin-top: 40px;
+        }
+        /* 📌 CSS สำหรับ AdSense / Support */
+        .adsense-unit {
+            text-align: center;
+            margin: 20px 0;
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .support-section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            text-align: center;
+            margin-top: 30px;
+        }
+        .support-section h3 {
+            color: #008080;
+            margin-bottom: 15px;
+        }
+        .support-section p {
+            margin-bottom: 10px;
+        }
+        .support-section img {
+            max-width: 150px;
+            width: 100%;
+            display: block;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        @media (max-width: 600px) {
+            .header-container h1 { font-size: 2em; }
+            .header-container p { font-size: 1em; }
+            .main-nav a { padding: 8px 15px; font-size: 0.9em; }
         }
     </style>
 </head>
@@ -161,9 +188,17 @@
     
     <div id="navigation-placeholder"></div>
     
+    <div class="adsense-unit">
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-2068902667667616"
+            data-ad-slot="1706997713" 
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
     <div class="container">
-        <div class="ads">
-        </div>
         <div class="horoscope-type-container">
             <a href="horoscope_daily.html" class="horoscope-type-card daily-horoscope-banner">🔮 ดูดวงรายวันสำหรับคุณ คลิกเลย!</a>
             <a href="horoscope_zodiac_year.html" class="horoscope-type-card zodiac-year-banner">🐉 ดูดวงปีนักษัตรของคุณ คลิกเลย!</a>
@@ -238,9 +273,25 @@
                 </a>
             </div>
         </div>
-        <div class="ads">
+
+        <div class="support-section">
+            <h3>☕ สนับสนุนทีมงาน</h3>
+            <p>เนื้อหาดูดวงแม่นๆ นี้เป็นประโยชน์หรือไม่? ท่านสามารถสนับสนุนการทำงานของทีมงานได้ครับ/ค่ะ</p>
+            <img src="images/promptpay.png" alt="QR PromptPay">
         </div>
+
+        </div>
+
+    <div class="adsense-unit">
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-2068902667667616"
+            data-ad-slot="1706997713" 
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
+
     <footer class="footer">
         <p>&copy; 2025 ครบจังดอทคอม | <a href="#" style="color:white; text-decoration: underline;">นโยบายความเป็นส่วนตัว</a></p>
     </footer>
@@ -258,16 +309,17 @@
                 placeholder.innerHTML = html;
 
                 // Logic to set the active link dynamically
-                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+                const currentPage = window.location.pathname.split('/').pop() || 'horoscope.html'; // กำหนด default เป็น horoscope.html
                 const navLinks = placeholder.querySelectorAll('.main-nav a');
                 
                 // 1. ลบ active class จากทุก link
                 navLinks.forEach(link => link.classList.remove('active'));
                 
-                // 2. เพิ่ม active class ให้กับ link ของหน้านี้ (horoscope.html)
+                // 2. เพิ่ม active class ให้กับ link ของหน้านี้
                 navLinks.forEach(link => {
-                    const linkHref = link.getAttribute('href');
-                    if (linkHref === currentPage) {
+                    const linkHref = link.getAttribute('href').split('/').pop();
+                    // ตรวจสอบทั้งชื่อไฟล์เป๊ะๆ และกรณีที่ไม่มีชื่อไฟล์ (สำหรับหน้าแรก)
+                    if (linkHref === currentPage || (linkHref === 'index.html' && currentPage === '')) {
                         link.classList.add('active');
                     }
                 });
@@ -281,14 +333,9 @@
 
         document.addEventListener("DOMContentLoaded", function () {
             loadNav(); // 📌 เรียกใช้ฟังก์ชันโหลดเมนู
-            
-            // โค้ดเดิมสำหรับให้เมนู Active อัตโนมัติถูกย้ายไปอยู่ใน loadNav() แล้ว
         });
 
     </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-</body>
+    
+    </body>
 </html>
