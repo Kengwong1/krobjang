@@ -30,7 +30,26 @@
         .ad-placeholder a { display: block; padding: 5px 0; font-weight: 700; color: var(--accent); text-decoration: none; transition: color 0.2s; }
         .ad-placeholder a:hover { color: var(--brand); }
         .ad-placeholder { background:#eee; padding:20px; text-align:center; border-radius:8px; color: var(--text-secondary); font-style:italic; margin-top:10px; }
-        .adsense-unit { background: var(--card); padding: 10px; border-radius: 8px; text-align: center; border: 1px solid var(--border); } /* สไตล์สำหรับโฆษณาใน Content Area */
+        .adsense-unit { 
+            background: var(--card); 
+            padding: 10px; 
+            border-radius: 8px; 
+            text-align: center; 
+            border: 1px solid var(--border);
+            /* เพิ่มสไตล์สำหรับ Placeholder ให้เห็นชัดเจน */
+            min-height: 250px; /* กำหนดความสูงขั้นต่ำเพื่อรองรับโฆษณา */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0; /* สีพื้นหลังชั่วคราว */
+        } 
+        /* ซ่อน Placeholder Text เมื่อโฆษณาโหลดจริง (ต้องใช้ JS) แต่เราจะใส่ไว้ในโค้ดเพื่อความเรียบร้อย */
+        .adsense-unit .ad-placeholder-text {
+            font-size: 1.1em;
+            color: #999;
+            padding: 20px;
+        }
         footer { background: var(--brand); color:#fff; padding:15px; text-align:center; margin-top:30px; font-size:0.85em; }
         @media(max-width:768px) { main { grid-template-columns:1fr; padding:0 12px; } }
     </style>
@@ -93,6 +112,10 @@
                 data-ad-format="auto"
                 data-full-width-responsive="true"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            
+            <div class="ad-placeholder-text">
+                พื้นที่โฆษณาอัตโนมัติ<br>Google AdSense
+            </div>
         </div>
 
         <div class="section">
