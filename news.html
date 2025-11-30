@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ข่าวทั้งหมด - ครบจังดอทคอม</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ใช้ CSS Variables และสไตล์ทั้งหมดจากหน้าแรก */
+    :root {
+        --brand: #0d47a1;
+        --accent: #1565c0;
+        --bg: #f4f6f9;
+        --card: #fff;
+        --text: #222;
+        --text-secondary: #666;
+        --border: #e0e0e0;
+        --highlight: #ff9800;
+    }
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body { font-family: "Sarabun", system-ui, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+    /* Header แบบหน้าแรก */
+    header { background: var(--brand); color:#fff; padding:20px 16px; text-align:center; box-shadow:0 2px 10px rgba(0,0,0,0.1); position: sticky; top:0; z-index:100; }
+    header h1 { margin:0; font-size:24px; letter-spacing:0.5px; }
+
+    /* Nav แบบหน้าแรก */
+    nav.main-nav { background:#fff; padding:10px 16px; box-shadow:0 2px 6px rgba(0,0,0,0.08); display:flex; justify-content:center; overflow-x:auto; gap:8px; flex-wrap: nowrap; }
+    nav.main-nav a { color:#333; text-decoration:none; padding:8px 12px; border-radius:8px; font-weight:600; font-size:0.9em; white-space:nowrap; border:1px solid transparent; }
+    nav.main-nav a.active, nav.main-nav a:hover { background: var(--accent); color:#fff; }
+
+    /* Container แบบหน้าแรก */
+    .container { max-width:1200px; margin:20px auto; padding:0 16px; display: grid; grid-template-columns: 1fr 300px; gap: 20px; }
+
+    /* Content Area แบบหน้าแรก */
+    .content-area { display: flex; flex-direction: column; gap: 20px; }
+
+    /* Section แบบหน้าแรก */
+    .section { background: var(--card); padding:18px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.06); }
+    .section h2 { margin:0 0 12px; color: var(--brand); font-size:1.3em; display:flex; align-items:center; gap:8px; }
+    .section h2::before { content:""; display:inline-block; width:8px; height:8px; background: var(--accent); border-radius:50%; }
+
+    /* News Grid & Card ใหม่ (ใช้สไตล์จากหน้าแรกแทนของเดิม) */
+    .news-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px; margin-top:15px; }
+    .news-card { background: var(--card); padding:18px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.06); transition:0.2s; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+    .news-card:hover { transform:translateY(-3px); box-shadow:0 6px 15px rgba(0,0,0,0.1); }
+    .news-card img { width: 100%; height: 160px; object-fit: cover; border-radius: 8px 8px 0 0; }
+    .news-content { flex-grow: 1; }
+    .news-content h3 { color: var(--brand); margin-bottom: 8px; font-size: 1.1em; }
+    .news-content p { color: var(--text-secondary); margin-bottom: 10px; font-size: 0.9em; }
+
+    footer { background: var(--brand); color:#fff; padding:15px; text-align:center; margin-top:30px; font-size:0.85em; }
+
+    /* สไตล์สำหรับส่วนโฆษณาและสนับสนุนด้านข้าง (ใช้สไตล์จากหน้าแรกแทนของเดิม) */
+    .sidebar { display:flex; flex-direction:column; gap:18px; }
+    .ad-section { background: var(--card); padding:15px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.06); }
+    .ad-section h2 { color: var(--highlight); }
+    .ad-placeholder { background:#eee; padding:20px; text-align:center; border-radius:8px; color: var(--text-secondary); font-style:italic; margin-top:10px; }
+    .support-card { background: var(--card); padding: 12px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); text-align: center; }
+    .support-card h3 { margin: 0 0 10px; font-size: 1em; color: var(--brand); }
+    .qr-code { width: 100%; max-width: 150px; height: auto; display: block; margin: 10px auto 0; }
+    .social-links { margin-top: 15px; }
+    .social-links a { display: block; margin: 5px 0; color: var(--accent); text-decoration: none; font-size: 0.9em; }
+
+    @media(max-width:768px) { 
+        .container { grid-template-columns:1fr; padding:0 12px; } 
+        nav.main-nav { padding:8px; } 
+        nav.main-nav a { padding:6px 10px; font-size:0.85em; } 
+        .news-card img { height: 120px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ข่าวทั้งหมดจากทุกหมวด</h1>
+  </header>
+
+  <div id="navigation-placeholder"></div>
+
+  <div class="container">
+    <!-- พื้นที่เนื้อหาหลัก -->
+    <div class="content-area">
+      <div class="section" id="general">
+        <h2>📰 ข่าวทั่วไป</h2>
+        <div id="general-news" class="news-grid">กำลังโหลด...</div>
+      </div>
+
+      <div class="section" id="economy">
+        <h2>📈 ข่าวเศรษฐกิจ</h2>
+        <div id="economy-news" class="news-grid">กำลังโหลด...</div>
+      </div>
+
+      <div class="section" id="finance">
+        <h2>💰 ข่าวการเงิน</h2>
+        <div id="finance-news" class="news-grid">กำลังโหลด...</div>
+      </div>
+
+      <div class="section" id="marketing">
+        <h2>🛍️ ธุรกิจ-การตลาด</h2>
+        <div id="marketing-news" class="news-grid">กำลังโหลด...</div>
+      </div>
+
+      <div class="section" id="ict">
+        <h2>🤖 เทคโนโลยี / AI</h2>
+        <div id="ict-news" class="news-grid">กำลังโหลด...</div>
+      </div>
+    </div>
+
+    <!-- พื้นที่ด้านข้างสำหรับโฆษณาและสนับสนุน -->
+    <aside class="sidebar">
+      <div class="ad-section">
+        <h2>💰 สนับสนุนเว็บไซต์</h2>
+        <div style="text-align:center;">
+          <ins class="adsbygoogle"
+              style="display:block"
+              data-ad-client="ca-pub-2068902667667616"
+              data-ad-slot="1706997713"
+              data-ad-format="auto"
+              data-full-width-responsive="true"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+        <div class="ad-placeholder">[โฆษณา Affiliate / โปรโมท AI Tools อื่น ๆ]</div>
+      </div>
+
+      <div class="ad-section">
+        <h2>☕ สนับสนุนเรา</h2>
+        <div class="support-card">
+          <p>หากเนื้อหานี้มีประโยชน์ ช่วยสนับสนุนทีมงานได้นะครับ</p>
+          <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    © 2025 ครบจังดอทคอม | รวมข่าวจาก RSS ประชาชาติธุรกิจ
+  </footer>
+
+  <script>
+    // 📌 ฟังก์ชันใหม่: สำหรับโหลดเมนูจาก nav.html และจัดการ active link
+    async function loadNav() {
+        try {
+            const response = await fetch('nav.html'); 
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const html = await response.text();
+            const placeholder = document.getElementById('navigation-placeholder');
+            placeholder.innerHTML = html;
+
+            // **Logic to set the active link dynamically**
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = placeholder.querySelectorAll('.main-nav a');
+            
+            // ลบ active class จากทุก link (เผื่อ nav.html มีการกำหนด default)
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            // เพิ่ม active class ให้กับ link ของหน้านี้
+            navLinks.forEach(link => {
+                if (link.href.endsWith(currentPage)) {
+                    link.classList.add('active');
+                }
+            });
+            
+        } catch (error) {
+            console.error('Error loading navigation:', error);
+            document.getElementById('navigation-placeholder').innerHTML = '<p style="text-align: center; padding: 10px; color: red;">ไม่สามารถโหลดเมนูได้</p>';
+        }
+    }
+    // สิ้นสุดฟังก์ชัน loadNav()
+
+    document.addEventListener("DOMContentLoaded", function () {
+      
+      // 📌 เรียกใช้ฟังก์ชันโหลดเมนู
+      loadNav(); 
+
+      const feeds = {
+        general: 'https://www.prachachat.net/feed',
+        economy: 'https://www.prachachat.net/economy/feed',
+        finance: 'https://www.prachachat.net/finance/feed',
+        marketing: 'https://www.prachachat.net/marketing/feed',
+        ict: 'https://www.prachachat.net/ict/feed'
+      };
+
+      const containers = {
+        general: document.getElementById('general-news'),
+        economy: document.getElementById('economy-news'),
+        finance: document.getElementById('finance-news'),
+        marketing: document.getElementById('marketing-news'),
+        ict: document.getElementById('ict-news')
+      };
+
+      function loadFeed(category, url) {
+        fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`)
+          .then(res => res.json())
+          .then(data => {
+            const items = data.items.slice(0, 6);
+            containers[category].innerHTML = '';
+            items.forEach(item => {
+              const card = document.createElement('a');
+              card.href = item.link;
+              card.target = '_blank';
+              card.rel = 'noopener noreferrer';
+              card.className = 'news-card'; // ใช้ class ใหม่ตามสไตล์หน้าแรก
+              card.innerHTML = `
+                <img src="${item.thumbnail || 'https://via.placeholder.com/400x200/004d99/ffffff?text=    ข่าว'}" alt="${item.title}">
+                <div class="news-content">
+                  <h3>${item.title}</h3>
+                  <p>${item.description.slice(0, 100)}...</p>
+                </div>
+              `;
+              containers[category].appendChild(card);
+            });
+          })
+          .catch(err => {
+            containers[category].innerHTML = '<p>ไม่สามารถโหลดข่าวได้</p>';
+            console.error(err);
+          });
+      }
+
+      for (const cat in feeds) {
+        loadFeed(cat, feeds[cat]);
+      }
+    });
+  </script>
+  <!-- โหลดสคริปต์ AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
+</body>
+</html>
