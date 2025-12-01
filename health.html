@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สุขภาพ - กาย, จิต, ความงาม | ครบจังดอทคอม</title>
+    <meta name="description" content="ศูนย์รวมคำแนะนำด้านสุขภาพ ไม่ว่าจะเป็นเรื่องร่างกาย, จิตใจ, ความงาม และการดูแลตนเองให้มีชีวิตที่สมดุลและมีความสุข">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand: #0d47a1;
+            --accent: #1565c0;
+            --bg: #f4f6f9;
+            --card: #fff;
+            --text: #222;
+            --text-secondary: #666;
+            --border: #e0e0e0;
+            --highlight: #ff9800;
+        }
+        * { box-sizing: border-box; margin:0; padding:0; }
+        body { font-family: "Sarabun", system-ui, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        header { background: var(--brand); color:#fff; padding:20px 16px; text-align:center; box-shadow:0 2px 10px rgba(0,0,0,0.1); position: sticky; top:0; z-index:100; }
+        header h1 { margin:0; font-size:24px; letter-spacing:0.5px; }
+        nav.main-nav { background:#fff; padding:10px 16px; box-shadow:0 2px 6px rgba(0,0,0,0.08); display:flex; justify-content:center; overflow-x:auto; gap:8px; flex-wrap: nowrap; }
+        nav.main-nav a { color:#333; text-decoration:none; padding:8px 12px; border-radius:8px; font-weight:600; font-size:0.9em; white-space:nowrap; border:1px solid transparent; }
+        nav.main-nav a.active, nav.main-nav a:hover { background: var(--accent); color:#fff; }
+        main { max-width:1200px; margin:20px auto; padding:0 16px; display:grid; grid-template-columns:1fr 300px; gap:20px; }
+        .content-area { display:flex; flex-direction:column; gap:20px; }
+        .section { background: var(--card); padding:18px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.06); }
+        .section h2 { margin:0 0 12px; color: var(--brand); font-size:1.3em; display:flex; align-items:center; gap:8px; }
+        .section h2::before { content:""; display:inline-block; width:8px; height:8px; background: var(--accent); border-radius:50%; }
+        .section p.intro-text { margin-bottom: 15px; color: var(--text-secondary); line-height: 1.7; }
+        .card-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:20px; margin-top:15px; }
+        .card { background: var(--card); padding:18px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.06); transition:0.2s; }
+        .card:hover { transform:translateY(-3px); box-shadow:0 6px 15px rgba(0,0,0,0.1); }
+        .card a { text-decoration:none; color: var(--accent); font-weight:600; }
+        .card h3 { color: var(--brand); margin-bottom: 8px; }
+        .card p { color: var(--text-secondary); margin-bottom: 10px; }
+        .sidebar { display:flex; flex-direction:column; gap:18px; }
+        .ad-section { background: var(--card); padding:15px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.06); }
+        .ad-section h2 { color: var(--highlight); }
+        .ad-placeholder { background:#eee; padding:20px; text-align:center; border-radius:8px; color: var(--text-secondary); font-style:italic; margin-top:10px; }
+        footer { background: var(--brand); color:#fff; padding:15px; text-align:center; margin-top:30px; font-size:0.85em; }
+        @media(max-width:768px) { main { grid-template-columns:1fr; padding:0 12px; } nav.main-nav { padding:8px; } nav.main-nav a { padding:6px 10px; font-size:0.85em; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>สุขภาพ & ความงาม</h1>
+</header>
+
+<nav class="main-nav">
+    <a href="index.html">หน้าแรก</a>
+    <a href="news.html">ข่าว</a>
+    <a href="lotto.html">ตรวจหวย</a>
+    <a href="horoscope.html">ดูดวง</a>
+    <a href="sport.html">กีฬา</a>
+    <a href="video.html">วีดีโอ</a>
+    <a href="ai.html">AI</a>
+    <a href="games.html">เกมส์</a>
+    <a href="shopping.html">ช้อปปิ้งกับเรา</a>
+    <a href="booking.html">ท่องเที่ยว</a>
+    <a href="contact.html">ติดต่อเรา</a>
+    <a href="tech.html">เทคโนโลยี</a>
+</nav>
+
+<main>
+    <div class="content-area">
+        <div class="section">
+            <h2>❤️ เริ่มต้นดูแลตัวเองอย่างสมดุล</h2>
+            <p class="intro-text">
+                ยินดีต้อนรับสู่ศูนย์รวมคำแนะนำด้านสุขภาพ ไม่ว่าคุณจะสนใจเรื่องร่างกาย, จิตใจ, หรือความงาม เราจะพาคุณค้นหาแนวทางในการดูแลตนเองให้มีชีวิตที่สมดุลและมีความสุข
+            </p>
+        </div>
+
+        <!-- หมวดหมู่หลัก -->
+        <div class="section">
+            <h2>📌 หมวดหมู่หลัก</h2>
+            <div class="card-grid">
+                <a href="physical-health.html" class="card">
+                    <h3>สุขภาพกาย</h3>
+                    <p>ออกกำลังกาย, โภชนาการ, การนอน, โรคทั่วไป</p>
+                </a>
+                <a href="mental-health.html" class="card">
+                    <h3>สุขภาพจิต</h3>
+                    <p>จัดการความเครียด, สมาธิ, ภาวะซึมเศร้า, ความวิตกกังวล</p>
+                </a>
+                <a href="beauty-care.html" class="card">
+                    <h3>ความงาม</h3>
+                    <p>ผิวพรรณ, ผม, แต่งหน้า, ดูแลร่างกาย</p>
+                </a>
+                <a href="lifestyle-habits.html" class="card">
+                    <h3>นิสัยการใช้ชีวิต</h3>
+                    <p>การจัดการเวลา, ความสมดุลชีวิต, ความสัมพันธ์</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- หัวข้อเด่น -->
+        <div class="section">
+            <h2>🔥 หัวข้อเด่น</h2>
+            <div class="card-grid">
+                <a href="how-to-sleep-better.html" class="card">
+                    <h3>วิธีนอนหลับให้ลึกและสบาย</h3>
+                    <p>เทคนิคการนอนที่ได้ผลจริง</p>
+                </a>
+                <a href="stress-management.html" class="card">
+                    <h3>จัดการความเครียดในยุคดิจิทัล</h3>
+                    <p>ลดความเครียดด้วยวิธีง่ายๆ</p>
+                </a>
+                <a href="skincare-routine.html" class="card">
+                    <h3>รูทีนดูแลผิวแบบมือใหม่</h3>
+                    <p>ขั้นตอนง่ายๆ ที่คุณทำตามได้</p>
+                </a>
+                <a href="healthy-eating.html" class="card">
+                    <h3>กินอย่างไรให้สุขภาพดี</h3>
+                    <p>อาหารที่ควรกินและควรเลี่ยง</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- บทความแนะนำ -->
+        <div class="section">
+            <h2>📖 บทความแนะนำ</h2>
+            <div class="card-grid">
+                <a href="mindfulness-meditation.html" class="card">
+                    <h3>ฝึกสติเพื่อสุขภาพจิต</h3>
+                    <p>เริ่มต้นง่ายๆ ด้วยการหายใจ</p>
+                </a>
+                <a href="exercise-at-home.html" class="card">
+                    <h3>ออกกำลังกายที่บ้าน</h3>
+                    <p>ไม่ต้องไปฟิตเนสก็ฟิตได้</p>
+                </a>
+                <a href="anti-aging-tips.html" class="card">
+                    <h3>เคล็ดลับชะลอวัย</h3>
+                    <p>ดูอ่อนเยาว์กว่าอายุจริง</p>
+                </a>
+                <a href="positive-thinking.html" class="card">
+                    <h3>คิดบวกเพื่อชีวิตที่ดีขึ้น</h3>
+                    <p>เปลี่ยนความคิด ชีวิตเปลี่ยน</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <aside class="sidebar">
+        <div class="ad-section">
+            <h2>💰 สนับสนุนเว็บไซต์</h2>
+            <div style="text-align:center;">
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-2068902667667616"
+                    data-ad-slot="1706997713"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+            <div class="ad-placeholder">[โฆษณา Affiliate / โปรโมทผลิตภัณฑ์สุขภาพ]</div>
+        </div>
+
+        <div class="ad-section">
+            <h2>☕ สนับสนุนเรา</h2>
+            <div class="card">
+                <p>หากเนื้อหานี้มีประโยชน์ ช่วยสนับสนุนทีมงานได้นะครับ</p>
+                <img src="images/promptpay.png" alt="QR PromptPay" style="width:100%; max-width:150px; display:block; margin:0 auto;">
+            </div>
+        </div>
+    </aside>
+</main>
+
+<footer>
+    &copy; 2025 ครบจังดอทคอม — All rights reserved.
+</footer>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
+
+</body>
+</html>
