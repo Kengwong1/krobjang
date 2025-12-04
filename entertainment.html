@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>หมวดบันเทิง - ครบจังดอทคอม</title>
-    <!-- เปลี่ยน font เป็น Sarabun ตามหน้าแรก -->
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         /* ใช้ CSS Variables และสไตล์ทั้งหมดจากหน้าแรก */
@@ -29,6 +28,12 @@
         nav.main-nav { background:#fff; padding:10px 16px; box-shadow:0 2px 6px rgba(0,0,0,0.08); display:flex; justify-content:center; overflow-x:auto; gap:8px; flex-wrap: nowrap; }
         nav.main-nav a { color:#333; text-decoration:none; padding:8px 12px; border-radius:8px; font-weight:600; font-size:0.9em; white-space:nowrap; border:1px solid transparent; }
         nav.main-nav a.active, nav.main-nav a:hover { background: var(--accent); color:#fff; }
+        
+        /* 📌 ตั้งค่า Active link สำหรับหน้านี้ */
+        /* ถึงแม้คุณจะไม่ต้องการลิงก์ "บันเทิง" ในแถบเมนู แต่หากมันถูกเพิ่มเข้ามา (ตามความตั้งใจแรก) สไตล์นี้จะทำงาน */
+        /* แต่เนื่องจากเราไม่ได้ใส่ลิงก์ "บันเทิง" ในเมนูนำทางแล้ว จึงไม่จำเป็นต้องมีสไตล์นี้ก็ได้ */
+        /* ถ้าเมนูนำทางด้านบน **ไม่มี** ลิงก์บันเทิงจริงๆ ก็ไม่จำเป็นต้องมีสไตล์นี้ค่ะ */
+        /* nav.main-nav a[href="entertainment.html"] { background: var(--accent); color:#fff; } */ 
 
         /* Container แบบหน้าแรก (Grid Layout) */
         .container { max-width:1200px; margin:20px auto; padding:0 16px; display: grid; grid-template-columns: 1fr 300px; gap: 20px; }
@@ -89,10 +94,20 @@
         <h1>ครบจังดอทคอม</h1>
     </header>
     
-    <div id="navigation-placeholder"></div>
-
+    <nav class="main-nav">
+        <a href="index.html">หน้าแรก</a>
+        <a href="news.html">ข่าว</a>
+        <a href="lotto.html">ตรวจหวย</a>
+        <a href="horoscope.html">ดูดวง</a>
+        <a href="sport.html">กีฬา</a>
+        <a href="video.html">วีดีโอ</a>
+        <a href="ai.html">AI</a>
+        <a href="games.html">เกมส์</a>
+        <a href="shopping.html">ช้อปปิ้งกับเรา</a>
+        <a href="booking.html">ท่องเที่ยว</a>
+        <a href="contact.html">ติดต่อเรา</a>
+    </nav>
     <div class="container">
-        <!-- พื้นที่เนื้อหาหลัก -->
         <div class="content-area">
             <div class="section">
                 <h2>🔥 ข่าวบันเทิงล่าสุด</h2>
@@ -103,7 +118,7 @@
                         <p>ข่าวฮือฮาในวงการบันเทิงไทย</p>
                     </div>
                     <div class="card">
-                        <img src="https://via.placeholder.com/400x200?text=ข่าวบันเทิง" alt="ข่าวบันเทิง">
+                        <img src="https://via.placeholder.com/400x200?text=ข่าวบันเทิง">
                         <h3>นักร้องดังเปิดใจถึงชีวิตส่วนตัว</h3>
                         <p>หลังหายไปจากวงการนานหลายเดือน</p>
                     </div>
@@ -114,7 +129,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="section">
                 <h2>🎬 รีวิวหนังและซีรีส์</h2>
                 <div class="card-grid">
@@ -179,28 +193,24 @@
             </div>
         </div>
 
-        <!-- พื้นที่ด้านข้างสำหรับโฆษณาและสนับสนุน -->
         <aside class="sidebar">
-            <!-- โฆษณา AdSense -->
             <div class="ad-section">
                 <h2>💰 สนับสนุนเว็บไซต์</h2>
                 <div style="text-align: center;"> 
-                  <ins class="adsbygoogle"
-                      style="display:block"
-                      data-ad-client="ca-pub-2068902667667616" 
-                      data-ad-slot="1706997713" 
-                      data-ad-format="auto"
-                      data-full-width-responsive="true"></ins>
-                  <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                  </script>
+                    <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-2068902667667616" 
+                        data-ad-slot="1706997713" 
+                        data-ad-format="auto"
+                        data-full-width-responsive="true"></ins>
+                    <script>
+                      (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
                 </div>
                 <div class="ad-placeholder" style="margin-top: 10px;">
                     [โฆษณา Affiliate]
                 </div>
             </div>
-            
-            <!-- QR Code สนับสนุน -->
             <div class="ad-section">
                 <h2>☕ สนับสนุนเรา</h2>
                 <div class="support-card">
@@ -208,8 +218,6 @@
                     <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
                 </div>
             </div>
-
-            <!-- โซเชียล -->
             <div class="ad-section">
                 <h2>📣 ติดตามเรา</h2>
                 <div class="support-card">
@@ -226,43 +234,6 @@
     <footer>
         <p>© 2025 ครบจังดอทคอม | <a href="#" style="color:white; text-decoration: underline;">นโยบายความเป็นส่วนตัว</a></p>
     </footer>
-    <script>
-        // 📌 ฟังก์ชันสำหรับโหลดเมนูจาก nav.html และจัดการ active link
-        async function loadNav() {
-            try {
-                const response = await fetch('nav.html'); 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const html = await response.text();
-                const placeholder = document.getElementById('navigation-placeholder');
-                placeholder.innerHTML = html;
-
-                // Logic to set the active link dynamically
-                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-                const navLinks = placeholder.querySelectorAll('.main-nav a');
-                
-                // 1. ลบ active class จากทุก link
-                navLinks.forEach(link => link.classList.remove('active'));
-                
-                // 2. เพิ่ม active class ให้กับ link ของหน้านี้ (entertainment.html)
-                navLinks.forEach(link => {
-                    const linkHref = link.getAttribute('href');
-                    if (linkHref === currentPage) {
-                        link.classList.add('active');
-                    }
-                });
-                
-            } catch (error) {
-                console.error('Error loading navigation:', error);
-                document.getElementById('navigation-placeholder').innerHTML = '<p style="text-align: center; padding: 10px; background: #fff; color: red;">ไม่สามารถโหลดเมนูได้</p>';
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            loadNav(); // 📌 โหลดเมนูอัตโนมัติ
-        });
-    </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
 </body>
 </html>
