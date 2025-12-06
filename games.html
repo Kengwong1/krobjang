@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <title>เกมส์ - ครบจังดอทคอม</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- เปลี่ยน font เป็น Sarabun ตามหน้าแรก -->
+    <meta name="description" content="เล่นเกมออนไลน์ฟรี หลากหลายหมวดหมู่: เกมแอคชั่น, พัซเซิล, กีฬา, ไพ่ และเกมตลก ทั้งเกมฝังในเว็บและเกมภายนอกคุณภาพสูง">
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        /* ใช้ CSS Variables และสไตล์ทั้งหมดจากหน้าแรก */
         :root {
             --brand: #0d47a1;
             --accent: #1565c0;
@@ -17,47 +17,170 @@
             --text-secondary: #666;
             --border: #e0e0e0;
             --highlight: #ff9800;
+            --gradient-start: #4facfe;
+            --gradient-end: #00f2fe;
         }
         * { box-sizing: border-box; margin:0; padding:0; }
         body { font-family: "Sarabun", system-ui, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
 
-        /* Header แบบหน้าแรก */
-        header { background: var(--brand); color:#fff; padding:15px 16px; text-align:center; box-shadow:0 2px 10px rgba(0,0,0,0.1); position: sticky; top:0; z-index:100; }
-        header h1 { margin:0; font-size:20px; letter-spacing:0.5px; }
-
-        /* Nav แบบหน้าแรก */
-        nav.main-nav { background:#fff; padding:10px 16px; box-shadow:0 2px 6px rgba(0,0,0,0.08); display:flex; justify-content:center; overflow-x:auto; gap:8px; flex-wrap: nowrap; }
-        nav.main-nav a { color:#333; text-decoration:none; padding:8px 12px; border-radius:8px; font-weight:600; font-size:0.9em; white-space:nowrap; border:1px solid transparent; }
-        nav.main-nav a.active, nav.main-nav a:hover { background: var(--accent); color:#fff; }
-
-        /* Container แบบหน้าแรก (Grid Layout) */
-        .container { max-width:1200px; margin:20px auto; padding:0 16px; display: grid; grid-template-columns: 1fr 300px; gap: 20px; }
-
-        /* Content Area แบบหน้าแรก */
-        .content-area { display: flex; flex-direction: column; gap: 20px; }
-
-        /* Section แบบหน้าแรก */
-        .section { background: var(--card); padding:18px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.06); }
-        .section h2 { margin:0 0 12px; color: var(--brand); font-size:1.3em; display:flex; align-items:center; gap:8px; }
-        .section h2::before { content:""; display:inline-block; width:8px; height:8px; background: var(--accent); border-radius:50%; }
-
-        /* สไตล์เฉพาะหน้าเกม (ปรับให้เข้ากับสไตล์ใหม่) */
-        #searchInput { 
-            width: 100%; max-width: 480px; margin: 18px auto; padding: 9px 14px; 
-            font-size: 1.07em; border-radius: 8px; border: 1px solid var(--border); display: block; 
-            background-color: var(--card); color: var(--text); /* เพิ่มสีพื้นหลังและตัวอักษร */
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: #fff;
+            padding: 16px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+            flex: 1;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
         }
 
-        .game-grid { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); 
+        /* Nav */
+        nav.main-nav {
+            background: #fff;
+            padding: 10px 16px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: center;
+            overflow-x: auto;
+            gap: 8px;
+            flex-wrap: nowrap;
+        }
+        nav.main-nav a {
+            color: #333;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9em;
+            white-space: nowrap;
+            border: 1px solid transparent;
+            min-width: 80px;
+            text-align: center;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        nav.main-nav a.active, nav.main-nav a:hover {
+            background: var(--accent);
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        /* Mobile Nav */
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            z-index: 999;
+        }
+        .mobile-nav a {
+            padding: 14px 20px;
+            border-bottom: 1px solid #eee;
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .mobile-nav a:hover {
+            background: #f5f5f5;
+        }
+        .mobile-nav a:last-child { border: none; }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 16px;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+        }
+
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Section */
+        .section {
+            background: var(--card);
+            padding: 18px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .section h2 {
+            margin: 0 0 12px;
+            color: var(--brand);
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section h2::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        /* Search */
+        #searchInput {
+            width: 100%;
+            max-width: 480px;
+            margin: 18px auto;
+            padding: 9px 14px;
+            font-size: 1.07em;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background-color: var(--card);
+            color: var(--text);
+            display: block;
+        }
+
+        /* Game Grid */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
             gap: 22px;
         }
         .game-card {
-            background: var(--card);
+            background: linear-gradient(145deg, #f0f5ff, #ffffff);
             border-radius: 12px;
             text-align: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-            transition: 0.2s;
+            transition: 0.3s;
             padding: 15px 10px 22px 10px;
             cursor: pointer;
             position: relative;
@@ -65,183 +188,365 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            border: 2px solid transparent;
         }
         .game-card:hover {
-            transform:translateY(-3px);
-            box-shadow:0 6px 15px rgba(0,0,0,0.1);
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            border-color: var(--accent);
         }
         .game-card img {
-            width: 80px; height: 80px; margin: 12px auto 8px; /* ปรับ margin */
-            border-radius: 18px; 
-            box-shadow: 0 2px 6px rgba(0,0,0,0.07); object-fit: cover; background: #eee;
+            width: 80px;
+            height: 80px;
+            margin: 12px auto 8px;
+            border-radius: 18px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+            object-fit: cover;
+            background: #eee;
         }
-        .game-card h3 { 
-            font-size: 1.15em; margin: 8px 0 10px 0; color: var(--brand); /* ปรับ margin */
+        .game-card h3 {
+            font-size: 1.15em;
+            margin: 8px 0 10px 0;
+            color: var(--brand);
+            font-weight: 600;
         }
         .game-btn {
-            display: inline-block; background: linear-gradient(90deg,var(--accent),#004d99 70%);
-            color: #fff; padding: 8px 24px; border: none; border-radius: 24px; font-size: 1em;
-            font-weight: bold; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 8px #0099ff44;
-            align-self: center; /* จัดปุ่มอยู่กึ่งกลางด้านล่าง */
+            display: inline-block;
+            background: linear-gradient(90deg, var(--accent), #004d99);
+            color: #fff;
+            padding: 8px 24px;
+            border: none;
+            border-radius: 24px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 2px 8px #0099ff44;
+            align-self: center;
         }
-        .game-btn:hover { 
-            background: linear-gradient(90deg,#007bff,#0055bb); transform: scale(1.05);
+        .game-btn:hover {
+            background: linear-gradient(90deg, #007bff, #0055bb);
+            transform: scale(1.08);
         }
-        iframe {
+
+        /* YouTube iframe */
+        .youtube-embed {
             width: 100%;
             height: 250px;
             border: 0;
             border-radius: 10px;
+            background: #000;
+        }
+        .youtube-fallback {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-secondary);
+            border-radius: 10px;
+            background: #f9f9f9;
         }
 
-        footer { background: var(--brand); color:#fff; padding:15px; text-align:center; margin-top:30px; font-size:0.85em; }
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .ad-section {
+            background: var(--card);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .ad-section h2 {
+            color: var(--highlight);
+        }
+        .ad-placeholder {
+            background: #eee;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-top: 10px;
+        }
+        .support-card {
+            background: var(--card);
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .support-card h3 {
+            margin: 0 0 10px;
+            font-size: 1em;
+            color: var(--brand);
+        }
+        .qr-code {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+            display: block;
+            margin: 10px auto 0;
+        }
+        .social-links {
+            margin-top: 15px;
+        }
+        .social-links a {
+            display: block;
+            margin: 5px 0;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9em;
+        }
 
-        /* สไตล์สำหรับส่วนโฆษณาและสนับสนุนด้านข้าง (ใช้สไตล์จากหน้าแรก) */
-        .sidebar { display:flex; flex-direction:column; gap:18px; }
-        .ad-section { background: var(--card); padding:15px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.06); }
-        .ad-section h2 { color: var(--highlight); }
-        .ad-placeholder { background:#eee; padding:20px; text-align:center; border-radius:8px; color: var(--text-secondary); font-style:italic; margin-top:10px; }
-        .support-card { background: var(--card); padding: 12px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); text-align: center; }
-        .support-card h3 { margin: 0 0 10px; font-size: 1em; color: var(--brand); }
-        .qr-code { width: 100%; max-width: 150px; height: auto; display: block; margin: 10px auto 0; }
-        .social-links { margin-top: 15px; }
-        .social-links a { display: block; margin: 5px 0; color: var(--accent); text-decoration: none; font-size: 0.9em; }
+        footer {
+            background: var(--brand);
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.85em;
+        }
 
         @media (max-width: 768px) {
-            .container { grid-template-columns: 1fr; }
+            nav.main-nav { display: none; }
+            .mobile-nav.active { display: flex; }
+            .menu-toggle { display: block; }
+            header { padding: 12px 16px; font-size: 18px; }
+            .container { grid-template-columns: 1fr; padding: 0 12px; }
+            .game-grid { grid-template-columns: 1fr; }
+            .youtube-embed { height: 200px; }
         }
     </style>
 </head>
 <body>
+
     <header>
+        <button class="menu-toggle" id="menuToggle">☰</button>
         <h1>ครบจังดอทคอม</h1>
+        <div style="width: 24px;"></div>
     </header>
 
-    <!-- จุดที่จะโหลดเมนูจาก nav.html -->
-    <div id="navigation-placeholder"></div>
+    <!-- Desktop Navigation -->
+    <nav class="main-nav">
+        <a href="index.html">
+            <i class="fas fa-home" style="color: #45B7D1;"></i>
+            หน้าแรก
+        </a>
+        <a href="news.html">
+            <i class="fas fa-newspaper" style="color: #FF6B6B;"></i>
+            ข่าว
+        </a>
+        <a href="lotto.html">
+            <i class="fas fa-ticket-alt" style="color: #FFD166;"></i>
+            หวย
+        </a>
+        <a href="horoscope.html">
+            <i class="fas fa-star" style="color: #6A4C93;"></i>
+            ดูดวง
+        </a>
+        <a href="sport.html">
+            <i class="fas fa-futbol" style="color: #E76F51;"></i>
+            กีฬา
+        </a>
+        <a href="video.html">
+            <i class="fas fa-video" style="color: #FF9F1C;"></i>
+            วีดีโอ
+        </a>
+        <a href="ai.html">
+            <i class="fas fa-robot" style="color: #2EC4B6;"></i>
+            AI
+        </a>
+        <a href="games.html" class="active">
+            <i class="fas fa-gamepad" style="color: #E76F51;"></i>
+            เกมส์
+        </a>
+        <a href="shopping.html">
+            <i class="fas fa-shopping-cart" style="color: #4ECDC4;"></i>
+            ช้อป
+        </a>
+        <a href="booking.html">
+            <i class="fas fa-map-marked-alt" style="color: #45B7D1;"></i>
+            ท่องเที่ยว
+        </a>
+        <a href="contact.html">
+            <i class="fas fa-address-card" style="color: #6A4C93;"></i>
+            ติดต่อเรา
+        </a>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html">
+            <i class="fas fa-home" style="color: #45B7D1; margin-right: 8px;"></i>
+            หน้าแรก
+        </a>
+        <a href="news.html">
+            <i class="fas fa-newspaper" style="color: #FF6B6B; margin-right: 8px;"></i>
+            ข่าว
+        </a>
+        <a href="lotto.html">
+            <i class="fas fa-ticket-alt" style="color: #FFD166; margin-right: 8px;"></i>
+            หวย
+        </a>
+        <a href="horoscope.html">
+            <i class="fas fa-star" style="color: #6A4C93; margin-right: 8px;"></i>
+            ดูดวง
+        </a>
+        <a href="sport.html">
+            <i class="fas fa-futbol" style="color: #E76F51; margin-right: 8px;"></i>
+            กีฬา
+        </a>
+        <a href="video.html">
+            <i class="fas fa-video" style="color: #FF9F1C; margin-right: 8px;"></i>
+            วีดีโอ
+        </a>
+        <a href="ai.html">
+            <i class="fas fa-robot" style="color: #2EC4B6; margin-right: 8px;"></i>
+            AI
+        </a>
+        <a href="games.html" class="active">
+            <i class="fas fa-gamepad" style="color: #E76F51; margin-right: 8px;"></i>
+            เกมส์
+        </a>
+        <a href="shopping.html">
+            <i class="fas fa-shopping-cart" style="color: #4ECDC4; margin-right: 8px;"></i>
+            ช้อป
+        </a>
+        <a href="booking.html">
+            <i class="fas fa-map-marked-alt" style="color: #45B7D1; margin-right: 8px;"></i>
+            ท่องเที่ยว
+        </a>
+        <a href="contact.html">
+            <i class="fas fa-address-card" style="color: #6A4C93; margin-right: 8px;"></i>
+            ติดต่อเรา
+        </a>
+    </div>
 
     <div class="container">
-        <!-- พื้นที่เนื้อหาหลัก -->
         <div class="content-area">
             <input type="text" id="searchInput" placeholder="ค้นหาเกม...">
-            
+
             <div class="section" id="action">
-                <h2>เกมแอคชั่น</h2>
+                <h2>🎮 เกมแอคชั่น</h2>
                 <div class="game-grid">
-                    <!-- แทนที่ด้วย Snake -->
-                    <div class="game-card" data-title="Snake" onclick="window.open('games/snake.html', '_blank')">
+                    <div class="game-card" onclick="window.open('games/snake.html', '_blank')">
                         <img src="images/snake-local.png" alt="Snake">
                         <h3>Snake</h3>
-                        <button class="game-btn">เล่นเกม</button>
+                        <button class="game-btn">เล่นเลย</button>
                     </div>
-                    <div class="game-card" data-title="Tic Tac Toe" onclick="window.open('games/xo.html', '_blank')">
+                    <div class="game-card" onclick="window.open('games/xo.html', '_blank')">
                         <img src="images/tic-tac-toe.png" alt="Tic Tac Toe">
-                        <h3>xo</h3>
-                        <button class="game-btn">เล่นเกม</button>
+                        <h3>XO</h3>
+                        <button class="game-btn">เล่นเลย</button>
                     </div>
-                    <div class="game-card" data-title="Tetris" onclick="window.open('games/tetris.html', '_blank')">
+                    <div class="game-card" onclick="window.open('games/tetris.html', '_blank')">
                         <img src="images/tetris.png" alt="Tetris">
                         <h3>Tetris</h3>
-                        <button class="game-btn">เล่นเกม</button>
+                        <button class="game-btn">เล่นเลย</button>
                     </div>
-                    <div class="game-card" data-title="Target Shooting" onclick="window.open('games/Target-shooting.html', '_blank')">
+                    <div class="game-card" onclick="window.open('games/Target-shooting.html', '_blank')">
                         <img src="images/target-shooting.png" alt="Target Shooting">
                         <h3>Target Shooting</h3>
-                        <button class="game-btn">เล่นเกม</button>
+                        <button class="game-btn">เล่นเลย</button>
                     </div>
-                    <div class="game-card" data-title="jump hero" onclick="window.open('games/jump hero.html', '_blank')">
-                        <img src="images/jump hero.png" alt="jump hero">
-                        <h3>jump hero</h3>
-                        <button class="game-btn">เล่นเกม</button>
+                    <div class="game-card" onclick="window.open('games/jump-hero.html', '_blank')">
+                        <img src="images/jump-hero.png" alt="Jump Hero">
+                        <h3>Jump Hero</h3>
+                        <button class="game-btn">เล่นเลย</button>
                     </div>
                 </div>
             </div>
-            
+
             <div class="section" id="puzzle">
-                <h2>เกมพัซเซิล</h2>
+                <h2>🧩 เกมพัซเซิล</h2>
                 <div class="game-grid">
-                    <div class="game-card" data-title="2048" onclick="window.open('https://play2048.co/', '_blank')">
+                    <div class="game-card" onclick="window.open('https://play2048.co/', '_blank', 'noopener,noreferrer')">
                         <img src="images/2048.png" alt="2048">
                         <h3>2048</h3>
-                        <button class="game-btn">เล่นเกม</button>
+                        <button class="game-btn">เล่นเลย</button>
                     </div>
-                    <div class="game-card" data-title="Logic Traffic" onclick="window.open('https://www.mathplayground.com/logic-traffic.html', '_blank')">
-                        <img src="https://www.mathplayground.com/wpimages/traffic_jam_puzzle.jpg" alt="Logic Traffic">
+                    <div class="game-card" onclick="window.open('https://www.mathplayground.com/logic-traffic.html', '_blank', 'noopener,noreferrer')">
+                        <img src="https://www.mathplayground.com/wp-content/uploads/2022/02/traffic-jam-logic-puzzle.png" alt="Logic Traffic">
                         <h3>Logic Traffic</h3>
-                        <button class="game-btn">เล่นเกม</button>
+                        <button class="game-btn">เล่นเลย</button>
                     </div>
-                    <div class="game-card" data-title="Fruit Matching" onclick="window.open('games/fruit-matching.html', '_blank')">
+                    <div class="game-card" onclick="window.open('games/fruit-matching.html', '_blank')">
                         <img src="images/fruit-matching.png" alt="Fruit Matching">
                         <h3>Fruit Matching</h3>
-                        <button class="game-btn">เล่นเกม</button>
+                        <button class="game-btn">เล่นเลย</button>
                     </div>
                 </div>
             </div>
-            
+
             <div class="section" id="sports">
-                <h2>เกมกีฬา</h2>
+                <h2>⚽ เกมกีฬา</h2>
                 <div class="game-grid">
-                    <div class="game-card" data-title="8 Ball Pool" onclick="window.open('https://www.miniclip.com/games/8-ball-pool-multiplayer/en/', '_blank')">
-                        <img src="images/8 Ball Pool.png" alt="8 Ball Pool">
+                    <div class="game-card" onclick="window.open('https://www.miniclip.com/games/8-ball-pool-multiplayer/en/', '_blank', 'noopener,noreferrer')">
+                        <img src="images/8-ball-pool.png" alt="8 Ball Pool">
                         <h3>8 Ball Pool</h3>
-                        <button class="game-btn">เล่นเกม</button>
+                        <button class="game-btn">เล่นเลย</button>
                     </div>
                 </div>
             </div>
-            
+
             <div class="section" id="funny">
-                <h2>เกมตลก</h2>
+                <h2>🤣 เกมตลก</h2>
                 <div class="game-grid">
-                    <div class="game-card" data-title="Quirky Turkey" onclick="window.open('https://poki.com/en/g/quirky-turkey', '_blank')">
-                        <img src="images/Quirky Turkey.png" alt="Quirky Turkey">
+                    <div class="game-card" onclick="window.open('https://poki.com/en/g/quirky-turkey', '_blank', 'noopener,noreferrer')">
+                        <img src="images/quirky-turkey.png" alt="Quirky Turkey">
                         <h3>Quirky Turkey</h3>
-                        <button class="game-btn">เล่นเกม</button>
+                        <button class="game-btn">เล่นเลย</button>
                     </div>
                 </div>
             </div>
-            
+
             <div class="section" id="card">
-                <h2>เกมไพ่</h2>
+                <h2>🃏 เกมไพ่</h2>
                 <div class="game-grid">
-                    <div class="game-card" data-title="Card Game" onclick="window.open('games/card-game.html', '_blank')">
+                    <div class="game-card" onclick="window.open('games/card-game.html', '_blank')">
                         <img src="images/card-game.png" alt="Card Game">
                         <h3>Card Game</h3>
-                        <button class="game-btn">เล่นเกม</button>
+                        <button class="game-btn">เล่นเลย</button>
                     </div>
                 </div>
             </div>
-            
+
             <div class="section">
-                <h2>รีวิวจาก YouTube</h2>
+                <h2>🎥 รีวิวเกมส์จาก YouTube</h2>
                 <div class="game-grid">
-                    <iframe src="https://www.youtube.com/embed/videoseries?list=PLz_hD_F5_lB_6pT_B_R1Z2Z_L_x_C3_O3" allowfullscreen></iframe>
-                    <iframe src="https://www.youtube.com/embed/videoseries?list=PLz_hD_F5_lB_6pT_B_R1Z2Z_L_x_C3_O3" allowfullscreen></iframe>
+                    <iframe class="youtube-embed" 
+                            src="https://www.youtube.com/embed/PLz_hD_F5_lB_6pT_B_R1Z2Z_L_x_C3_O3?list=PLz_hD_F5_lB_6pT_B_R1Z2Z_L_x_C3_O3"
+                            title="รีวิวเกมส์"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    
+                    <div class="youtube-fallback">
+                        <i class="fas fa-video fa-2x" style="color: #ff0000;"></i>
+                        <p style="margin-top:10px;">ไม่สามารถโหลดวิดีโอได้<br>ลอง <a href="https://youtube.com/@phongphunphommanee8045" target="_blank" style="color:var(--accent);">เข้าช่อง YouTube ของเรา</a></p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- พื้นที่ด้านข้างสำหรับโฆษณาและสนับสนุน -->
+        <!-- Sidebar -->
         <aside class="sidebar">
-            <!-- โฆษณา AdSense -->
             <div class="ad-section">
                 <h2>💰 สนับสนุนเว็บไซต์</h2>
-                <div style="text-align: center;"> 
-                  <ins class="adsbygoogle"
-                      style="display:block"
-                      data-ad-client="ca-pub-2068902667667616" 
-                      data-ad-slot="1706997713" 
-                      data-ad-format="auto"
-                      data-full-width-responsive="true"></ins>
-                  <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                  </script>
+                <div style="text-align: center;">
+                    <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-2068902667667616"
+                        data-ad-slot="1706997713"
+                        data-ad-format="auto"
+                        data-full-width-responsive="true"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
                 </div>
-                <div class="ad-placeholder" style="margin-top: 10px;">
-                    [โฆษณา Affiliate]
-                </div>
+                <div class="ad-placeholder">[โฆษณา Affiliate]</div>
             </div>
-            
-            <!-- QR Code สนับสนุน -->
+
             <div class="ad-section">
                 <h2>☕ สนับสนุนเรา</h2>
                 <div class="support-card">
@@ -250,70 +555,48 @@
                 </div>
             </div>
 
-            <!-- โซเชียล -->
             <div class="ad-section">
                 <h2>📣 ติดตามเรา</h2>
                 <div class="support-card">
                     <p>ติดตามข่าวสารและอัปเดตได้ที่</p>
                     <div class="social-links">
                         <a href="#" target="_blank">Facebook Page</a>
-                        <a href="https://youtube.com/@phongphunphommanee8045?si=6Qc-xMaBicyMaFYo" target="_blank">YouTube Channel</a>
-                        <a href="https://www.tiktok.com/@kengwong007?is_from_webapp=1&sender_device=pc" target="_blank">TikTok</a>
+                        <a href="https://youtube.com/@phongphunphommanee8045" target="_blank">YouTube Channel</a>
+                        <a href="https://www.tiktok.com/@kengwong007" target="_blank">TikTok</a>
                     </div>
                 </div>
             </div>
         </aside>
     </div>
+
     <footer>
         <p>© 2025 ครบจังดอทคอม | <a href="#" style="color:white; text-decoration: underline;">นโยบายความเป็นส่วนตัว</a></p>
     </footer>
 
     <script>
-        // ฟังก์ชันสำหรับโหลดเมนูจาก nav.html และจัดการ active link
-        async function loadNav() {
-            try {
-                const response = await fetch('nav.html');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const html = await response.text();
-                const placeholder = document.getElementById('navigation-placeholder');
-                placeholder.innerHTML = html;
+        // 📱 Toggle Mobile Menu
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('mobileNav').classList.toggle('active');
+        });
 
-                // Logic to set the active link dynamically
-                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-                const navLinks = placeholder.querySelectorAll('.main-nav a');
+        // Close mobile menu
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileNav').classList.remove('active');
+            });
+        });
 
-                // ลบ active class จากทุก link
-                navLinks.forEach(link => link.classList.remove('active'));
-
-                // เพิ่ม active class ให้กับ link ของหน้านี้
-                navLinks.forEach(link => {
-                    if (link.href.endsWith(currentPage)) {
-                        link.classList.add('active');
-                    }
-                });
-
-            } catch (error) {
-                console.error('Error loading navigation:', error);
-                document.getElementById('navigation-placeholder').innerHTML = '<p style="text-align: center; padding: 10px; color: red;">ไม่สามารถโหลดเมนูได้</p>';
-            }
-        }
-
-        // เรียกใช้ฟังก์ชันโหลดเมนูเมื่อหน้าเว็บโหลดเสร็จ
-        document.addEventListener("DOMContentLoaded", function () {
-            loadNav();
-
-            // โค้ดเดิมของคุณสำหรับระบบค้นหา
-            document.getElementById("searchInput").addEventListener("input", function () {
-                const keyword = this.value.toLowerCase();
-                document.querySelectorAll(".game-card").forEach(card => {
-                    const title = card.dataset.title.toLowerCase();
-                    card.style.display = title.includes(keyword) ? "" : "none";
-                });
+        // 🔍 Search
+        document.getElementById("searchInput").addEventListener("input", function () {
+            const keyword = this.value.toLowerCase();
+            document.querySelectorAll(".game-card").forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                card.style.display = title.includes(keyword) ? "" : "none";
             });
         });
     </script>
+
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
+
 </body>
 </html>
